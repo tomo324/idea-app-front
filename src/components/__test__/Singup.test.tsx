@@ -1,33 +1,39 @@
 import React from "react";
-import { render, fireEvent, RenderResult, waitFor } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  RenderResult,
+  screen,
+} from "@testing-library/react";
 import Signup from "../Signup/Signup";
 
 describe("Signupコンポーネント", () => {
-  let getByLabelText: RenderResult['getByLabelText'];
-  let getByRole: RenderResult['getByRole'];
+
+  const signupUrl = "http://localhost:3333/auth/signup";
 
   // フォーム入力
-  const fillForm = () => {
-    fireEvent.change(getByLabelText("Email"), {
+  const fillForm = async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "test@example.com" },
     });
-    fireEvent.change(getByLabelText("Password"), {
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
       target: { value: "password123" },
     });
-    fireEvent.change(getByLabelText("Name"), { target: { value: "testUser" } });
+    await new Promise((resolve) => setTimeout(resolve, 100));
   };
 
   // フォーム送信
   const submitForm = async () => {
-    fireEvent.click(getByRole("button", { name: "Sign Up" }));
-    await new Promise(resolve => setTimeout(resolve, 100))
+    fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   };
 
   // テスト開始時にSignupコンポーネントをレンダリング
   beforeEach(() => {
     const renderResult = render(<Signup />);
-    getByLabelText = renderResult.getByLabelText;
-    getByRole = renderResult.getByRole;
   });
 
   // テスト終了時fetch関数のモック化を解除
@@ -36,7 +42,7 @@ describe("Signupコンポーネント", () => {
     jest.restoreAllMocks();
   });
 
-  it("フォーム入力が正常に行え、fetchが正しく呼び出されていること", async () => {
+  it("フォーム入力が正常に行え、fetchが正しく呼び出され、成功すること", async () => {
     const mockResponse = {
       ok: true,
       status: 200,
@@ -49,24 +55,24 @@ describe("Signupコンポーネント", () => {
 
     // fetch関数をモック化
     global.fetch = jest.fn().mockImplementation(dataSignupMock);
-    
+
     // フォームを埋め送信
-    fillForm();
+    await fillForm();
     await submitForm();
 
     // fetchが一度だけ呼び出されたことをテスト
     expect(global.fetch).toHaveBeenCalledTimes(1);
 
     // fetchの引数が正しいことをテスト
-    expect(global.fetch).toHaveBeenCalledWith("auth/signup", {
+    expect(global.fetch).toHaveBeenCalledWith(signupUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: "test@example.com",
-        password: "password123",
         name: "testUser",
+        password: "password123",
       }),
     });
 
@@ -76,7 +82,6 @@ describe("Signupコンポーネント", () => {
   });
 
   it("fetchのレスポンスが失敗した場合、console.logとalertが実行されること", async () => {
-
     const mockResponse = {
       ok: false,
       status: 401,
@@ -91,13 +96,13 @@ describe("Signupコンポーネント", () => {
     global.fetch = jest.fn().mockImplementation(dataSignupMock);
 
     // console.logをモック化
-    jest.spyOn(console, 'log');
+    jest.spyOn(console, "log");
 
     // alertをモック化
-    jest.spyOn(window, 'alert');
+    jest.spyOn(window, "alert");
 
     // フォームを埋めて送信
-    fillForm();
+    await fillForm();
     await submitForm();
 
     // fetchが一度だけ呼び出されたことを確認
@@ -106,13 +111,182 @@ describe("Signupコンポーネント", () => {
     // console.logが一度だけ呼び出されたことを確認
     expect(console.log).toHaveBeenCalledTimes(1);
     // console.logの引数が正しいことを確認
-    expect(console.log).toHaveBeenCalledWith('Server Error', { error: 'Unauthorized' });
+    expect(console.log).toHaveBeenCalledWith("Server Error", {
+      error: "Unauthorized",
+    });
 
     // alertが一度だけ呼び出されたことを確認
     expect(window.alert).toHaveBeenCalledTimes(1);
     // alertの引数が正しいことを確認
-    expect(window.alert).toHaveBeenCalledWith('Server Error');
+    expect(window.alert).toHaveBeenCalledWith("Server Error");
   });
 
-  // TODO バリデーション用のテストを追加する
+
+  it("すべてのフォームが空の場合、Signupボタンを押せないこと", async () => {
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+  });
+
+  it("フォームを埋めた後、空にするとエラーメッセージが表示され、Signupボタンが押せないこと", async () => {
+    // フォームを埋めて送信
+    await fillForm();
+    await submitForm();
+
+    // フォームが空になることを確認
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "" } });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // エラーメッセージが表示されていることを確認
+    expect(screen.getByText("email is required")).toBeInTheDocument();
+    expect(screen.getByText("name is required")).toBeInTheDocument();
+    expect(
+      screen.getByText("password must be at least 6 characters")
+    ).toBeInTheDocument();
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+  });
+
+  it("メールアドレスが空の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+  });
+
+  it("パスワードが空の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+  });
+
+  it("名前が空の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), { target: { value: "" } });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+  });
+
+  it("メールアドレスが不正な形式の場合、エラーメッセージが表示され、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+
+    // エラーメッセージが表示されていることを確認
+    expect(screen.getByText("invalid email")).toBeInTheDocument();
+  });
+
+  it("パスワードが6文字未満の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "pass" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+
+    // エラーメッセージが表示されていることを確認
+    expect(
+      screen.getByText("password must be at least 6 characters")
+    ).toBeInTheDocument();
+  });
+
+  it("パスワードが17文字以上の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123456789" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+
+    // エラーメッセージが表示されていることを確認
+    expect(
+      screen.getByText("password must be less than 16 characters")
+    ).toBeInTheDocument();
+  });
+
+  it("名前が21文字以上の場合、Signupボタンを押せないこと", async () => {
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "abcdefghijklmnopqrstu" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+
+    // エラーメッセージが表示されていることを確認
+    expect(
+      screen.getByText("name must be less than 20 characters")
+    ).toBeInTheDocument();
+  });
 });
