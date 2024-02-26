@@ -66,16 +66,17 @@ const Signup: React.FC = () => {
     }
   };
 
-  // TODO fetch成功時に/homeにルーティングされるようにする
-  // TODO パスワード入力欄に目のやつをつける
-  // TODO メールアドレスが重複している場合の処理を追加する
   // TODO レスポンシブ対応する
+  // TODO メールアドレスが重複している場合の処理を追加する
+  // TODO fetchでsignTokenを受け取った場合、その情報を持って/homeに遷移する。'Email already exists'エラーを受け取った場合はエラーメッセージを表示する。
+  // 遷移前にemailが重複していないか確認できるようにする。react-router-domのuseHistoryを使う
+  // TODO 遷移先のコンポーネントでも、ユーザー情報が渡されていなければ'backend/users/me'から独自で取得するようにする
   // TODO モーダルと連携する
   // TODO バックエンドを動かしてテストしてみる
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-gray-200">
-      <div className="p-8 bg-white rounded shadow-md w-96">
+      <div className="p-8 bg-white rounded shadow-md w-full sm:w-96">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-8 text-3xl font-semibold text-center text-gray-700">
             Sign Up
@@ -90,7 +91,7 @@ const Signup: React.FC = () => {
             className="block w-full px-4 py-2 mt-2 mb-4 border rounded-md outline-none focus:ring-2 focus:ring-blue-400"
           ></input>
           {errors.email && (
-            <p className="text-red-600">
+            <p className="text-red-600 text-sm">
               {errors.email.message as React.ReactNode}
             </p>
           )}
@@ -105,7 +106,7 @@ const Signup: React.FC = () => {
             className="block w-full px-4 py-2 mt-2 mb-4 border rounded-md outline-none focus:ring-2 focus:ring-blue-400"
           ></input>
           {errors.name && (
-            <p className="text-red-600">
+            <p className="text-red-600 text-sm">
               {errors.name.message as React.ReactNode}
             </p>
           )}
@@ -134,7 +135,7 @@ const Signup: React.FC = () => {
             </span>
           </div>
           {errors.password && (
-            <p className="text-red-600">
+            <p className="text-red-600 text-sm">
               {errors.password.message as React.ReactNode}
             </p>
           )}
