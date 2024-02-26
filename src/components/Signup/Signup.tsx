@@ -66,16 +66,16 @@ const Signup: React.FC = () => {
     }
   };
 
-  // TODO レスポンシブ対応する
+  // TODO Modalコンポーネントを作成する
+  // TODO モーダルと連携する
   // TODO メールアドレスが重複している場合の処理を追加する
   // TODO fetchでsignTokenを受け取った場合、その情報を持って/homeに遷移する。'Email already exists'エラーを受け取った場合はエラーメッセージを表示する。
   // 遷移前にemailが重複していないか確認できるようにする。react-router-domのuseHistoryを使う
   // TODO 遷移先のコンポーネントでも、ユーザー情報が渡されていなければ'backend/users/me'から独自で取得するようにする
-  // TODO モーダルと連携する
+  // TODO レスポンシブ対応する
   // TODO バックエンドを動かしてテストしてみる
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gray-200">
       <div className="p-8 bg-white rounded shadow-md w-full sm:w-96">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-8 text-3xl font-semibold text-center text-gray-700">
@@ -149,7 +149,6 @@ const Signup: React.FC = () => {
           </button>
         </form>
       </div>
-    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
+import { MantineProvider } from '@mantine/core';
 import "../src/app/globals.css";
+import React from "react";
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +13,8 @@ const preview: Preview = {
       },
     },
   },
+  // ここでMantineProviderを使って全てのストーリーにMantineのコンポーネントを適用する
+  decorators: [(Story) => <MantineProvider><Story /></MantineProvider>],
 };
 
 export default preview;
