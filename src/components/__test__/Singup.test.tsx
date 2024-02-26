@@ -8,7 +8,6 @@ import {
 import Signup from "../Signup/Signup";
 
 describe("Signupコンポーネント", () => {
-
   const signupUrl = "http://localhost:3333/auth/signup";
 
   // フォーム入力
@@ -29,6 +28,11 @@ describe("Signupコンポーネント", () => {
   const submitForm = async () => {
     fireEvent.click(screen.getByRole("button", { name: "Sign Up" }));
     await new Promise((resolve) => setTimeout(resolve, 100));
+  };
+
+  // n文字の文字列を作成
+  const createString = (n: number) => {
+    return "a".repeat(n);
   };
 
   // テスト開始時にSignupコンポーネントをレンダリング
@@ -121,7 +125,6 @@ describe("Signupコンポーネント", () => {
     expect(window.alert).toHaveBeenCalledWith("Server Error");
   });
 
-
   it("すべてのフォームが空の場合、Signupボタンを押せないこと", async () => {
     // Signupボタンが無効化されていることを確認
     const signupButton = screen.getByRole("button", { name: "Sign Up" });
@@ -144,10 +147,10 @@ describe("Signupコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // エラーメッセージが表示されていることを確認
-    expect(screen.getByText("email is required")).toBeInTheDocument();
-    expect(screen.getByText("name is required")).toBeInTheDocument();
+    expect(screen.getByText("メールアドレスは必須です")).toBeInTheDocument();
+    expect(screen.getByText("名前は必須です")).toBeInTheDocument();
     expect(
-      screen.getByText("password must be at least 6 characters")
+      screen.getByText("パスワードは6文字以上で入力してください")
     ).toBeInTheDocument();
 
     // Signupボタンが無効化されていることを確認
@@ -221,10 +224,36 @@ describe("Signupコンポーネント", () => {
     expect(signupButton).toBeDisabled();
 
     // エラーメッセージが表示されていることを確認
-    expect(screen.getByText("invalid email")).toBeInTheDocument();
+    expect(
+      screen.getByText("メールアドレスの形式が正しくありません")
+    ).toBeInTheDocument();
   });
 
-  it("パスワードが6文字未満の場合、Signupボタンを押せないこと", async () => {
+  it("メールアドレスが256文字以上の場合、エラーメッセージが表示され、Signupボタンを押せないこと", async () => {
+    const longEmail = createString(255) + "@example.com";
+
+    fireEvent.change(screen.getByLabelText("Email"), {
+      target: { value: longEmail },
+    });
+    fireEvent.change(screen.getByLabelText("Name"), {
+      target: { value: "testUser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password"), {
+      target: { value: "password123" },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    // Signupボタンが無効化されていることを確認
+    const signupButton = screen.getByRole("button", { name: "Sign Up" });
+    expect(signupButton).toBeDisabled();
+
+    // エラーメッセージが表示されていることを確認
+    expect(
+      screen.getByText("メールアドレスは255文字以内で入力してください")
+    ).toBeInTheDocument();
+  });
+
+  it("パスワードが6文字未満の場合、エラーメッセージが表示され、Signupボタンを押せないこと", async () => {
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "test@example.com" },
     });
@@ -242,11 +271,13 @@ describe("Signupコンポーネント", () => {
 
     // エラーメッセージが表示されていることを確認
     expect(
-      screen.getByText("password must be at least 6 characters")
+      screen.getByText("パスワードは6文字以上で入力してください")
     ).toBeInTheDocument();
   });
 
-  it("パスワードが17文字以上の場合、Signupボタンを押せないこと", async () => {
+  it("パスワードが128文字以上の場合、エラーメッセージが表示され、Signupボタンを押せないこと", async () => {
+    const longPassword = createString(128);
+
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "test@example.com" },
     });
@@ -254,7 +285,7 @@ describe("Signupコンポーネント", () => {
       target: { value: "testUser" },
     });
     fireEvent.change(screen.getByLabelText("Password"), {
-      target: { value: "password123456789" },
+      target: { value: longPassword },
     });
     await new Promise((resolve) => setTimeout(resolve, 100));
 
@@ -264,11 +295,11 @@ describe("Signupコンポーネント", () => {
 
     // エラーメッセージが表示されていることを確認
     expect(
-      screen.getByText("password must be less than 16 characters")
+      screen.getByText("パスワードは127文字以内で入力してください")
     ).toBeInTheDocument();
   });
 
-  it("名前が21文字以上の場合、Signupボタンを押せないこと", async () => {
+  it("名前が21文字以上の場合、エラーメッセージが表示され、Signupボタンを押せないこと", async () => {
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "test@example.com" },
     });
@@ -286,7 +317,7 @@ describe("Signupコンポーネント", () => {
 
     // エラーメッセージが表示されていることを確認
     expect(
-      screen.getByText("name must be less than 20 characters")
+      screen.getByText("名前は20文字以内で入力してください")
     ).toBeInTheDocument();
   });
 });
