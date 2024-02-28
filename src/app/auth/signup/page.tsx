@@ -4,12 +4,10 @@ import Link from "next/link";
 
 const SignupPage = () => {
   return (
-      <main>
-        <div>
-          <Signup />
-        </div>
-        <Link href="/">back to top</Link>
-      </main>
+    <main className="flex flex-col items-center justify-center h-full">
+      <Link href="/">← back to top</Link>
+      <Signup />
+    </main>
   )
 } 
 export default SignupPage;
