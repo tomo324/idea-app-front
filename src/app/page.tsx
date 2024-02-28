@@ -25,6 +25,15 @@ export default function Home() {
       </div>
       <div>
         {/* アイデア融合の例をここに記述 */}
+        <p className="text-center">
+          aaaaaaaaaaaaaaaaaaa<br />
+          aaaaaaaaaaaaaaaaaaaaaaaa<br />
+          aaaaaaaaaaaaaaaaaaaaaaaaaaa<br />
+          bbbbbbbbbbbbbbbbbbbbbbbbbbbb<br />
+          bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb<br />
+          ccccccccccccccccccccccccccccccccccccccc<br />
+          ccccccccccccccccccccccccccccccccccccccccc<br />
+        </p>
       </div>
     </main>
   );

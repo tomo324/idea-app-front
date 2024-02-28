@@ -32,7 +32,10 @@ const config: Config = {
       },
       fontFamily: {
         ibm: ["IBM Plex Mono"],
-      }
+      },
+      width: {
+        '80vw': '80vw',
+      },
     },
   },
   plugins: [],

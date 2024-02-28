@@ -5,8 +5,6 @@ import { Modal as MantineModal, Button } from "@mantine/core";
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-
-
 const Modal = ({ children }: { children: ReactNode }) => {
   const [opened, { open, close }] = useDisclosure(true);
 
@@ -14,7 +12,7 @@ const Modal = ({ children }: { children: ReactNode }) => {
   const closeHandler = () => {
     close();
     back();
-  }
+  };
 
   return (
     <>
@@ -31,7 +29,12 @@ const Modal = ({ children }: { children: ReactNode }) => {
             alignItems: "center",
             justifyContent: "center",
           },
-          content: { width: "fit-content" },
+          body: { overflow: "hidden" },
+          content: {
+            width: "fit-content",
+            maxHeight: "100vw",
+            overflowY: "auto",
+          },
           close: { width: "3rem", position: "absolute", right: 0, top: 10 },
         }}
       >
@@ -39,7 +42,12 @@ const Modal = ({ children }: { children: ReactNode }) => {
           {children}
         </div>
       </MantineModal>
-      {opened && <div className="fixed inset-0 bg-black opacity-50" onClick={closeHandler} />}
+      {opened && (
+        <div
+          className="fixed inset-0 bg-black opacity-50"
+          onClick={closeHandler}
+        />
+      )}
     </>
   );
 };
