@@ -1,13 +1,13 @@
 "use client";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button } from "@mantine/core";
+import { Modal as MantineModal, Button } from "@mantine/core";
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 
 
-const AuthModal = ({ children }: { children: ReactNode }) => {
+const Modal = ({ children }: { children: ReactNode }) => {
   const [opened, { open, close }] = useDisclosure(true);
 
   const { back } = useRouter();
@@ -18,7 +18,7 @@ const AuthModal = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <Modal
+      <MantineModal
         opened={opened}
         onClose={closeHandler}
         styles={{
@@ -38,10 +38,10 @@ const AuthModal = ({ children }: { children: ReactNode }) => {
         <div className="flex items-center justify-center h-full">
           {children}
         </div>
-      </Modal>
+      </MantineModal>
       {opened && <div className="fixed inset-0 bg-black opacity-50" onClick={closeHandler} />}
     </>
   );
 };
 
-export default AuthModal;
+export default Modal;

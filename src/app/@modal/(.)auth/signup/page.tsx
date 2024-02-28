@@ -1,4 +1,4 @@
-import AuthModal from '@/components/AuthModal/AuthModal';
+import Modal from '@/components/Modal/Modal';
 import Signup from '../../../../components/Signup/Signup';
 import React from "react";
 
@@ -6,9 +6,9 @@ import React from "react";
 const SignupPage = () => {
   return (
     <div className='flex items-center justify-center'>
-      <AuthModal>
+      <Modal>
         <Signup />
-      </AuthModal>
+      </Modal>
     </div>
   )
 } 
