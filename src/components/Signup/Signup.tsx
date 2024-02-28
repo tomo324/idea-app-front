@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { signupValidationSchema } from "@/utils/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,6 +19,13 @@ const Signup: React.FC = () => {
 
   // パスワード表示制御
   const [isRevealPassword, setIsRevealPassword] = useState(false);
+
+  // iconの切り替え
+  const [icon, setIcon] = useState(faEyeSlash);
+
+  useEffect(() => {
+    setIcon(isRevealPassword? faEye: faEyeSlash);
+  }, [isRevealPassword])
 
   const togglePassword = () => {
     setIsRevealPassword((prevState) => !prevState);
@@ -127,11 +134,12 @@ const Signup: React.FC = () => {
               className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
               style={{ top: '40%' }}
             >
-              {isRevealPassword ? (
+              {/*{isRevealPassword ? (
                 <FontAwesomeIcon icon={faEye} />
               ) : (
                 <FontAwesomeIcon icon={faEyeSlash} />
-              )}
+              )}*/}
+              <FontAwesomeIcon icon={icon} />
             </span>
           </div>
           {errors.password && (

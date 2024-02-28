@@ -1,35 +1,45 @@
 "use client";
 
 import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button, MantineProvider } from "@mantine/core";
-import { ReactNode } from "react";
+import { Modal, Button } from "@mantine/core";
+import { ReactNode, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+
 
 const AuthModal = ({ children }: { children: ReactNode }) => {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(true);
 
-  // openを親コンポーネントからpropsで受け取るようにする
+  const { back } = useRouter();
+  const closeHandler = () => {
+    close();
+    back();
+  }
+
   return (
     <>
       <Modal
         opened={opened}
-        onClose={close}
+        onClose={closeHandler}
         styles={{
           root: {
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "rgba(128, 128, 128, 0.5)",
           },
           content: { width: "fit-content" },
-          close: { width: "3rem", position: "absolute", right: 0 },
+          close: { width: "3rem", position: "absolute", right: 0, top: 10 },
         }}
       >
         <div className="flex items-center justify-center h-full">
           {children}
         </div>
       </Modal>
-
-      <Button onClick={open}>Open modal</Button>
+      {opened && <div className="fixed inset-0 bg-black opacity-50" onClick={closeHandler} />}
     </>
   );
 };
