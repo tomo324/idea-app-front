@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/consts/apiUrl";
 
 interface SignupForm {
   email: string;
@@ -46,7 +47,7 @@ const Signup: React.FC = () => {
 
   const submitSignup = async (data: SignupForm) => {
 
-    const signupUrl = "http://localhost:3333/auth/signup";
+    const signupUrl = `${apiUrl.URL}/auth/signup`;
     const { email, name, password } = data;
 
     try {

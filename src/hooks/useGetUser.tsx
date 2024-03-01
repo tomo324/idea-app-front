@@ -1,9 +1,10 @@
 'use client';
 
 import useSWR from "swr";
+import { apiUrl } from "@/consts/apiUrl";
 
 export const useGetUser = (jwt_token: string | null) => {
-  const getUserUrl = "http://localhost:3333/users/me";
+  const getUserUrl = `${apiUrl.URL}/users/me`;
 
   const fetcher = async (url: string) => {
     if (!jwt_token) {
