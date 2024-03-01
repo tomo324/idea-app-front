@@ -7,6 +7,7 @@ import {
 } from "@testing-library/react";
 import Signup from "../Signup/Signup";
 import { useRouter } from "next/navigation";
+import { apiUrl } from "@/consts/apiUrl";
 
   // useRouterをモック化
   jest.mock('next/navigation', () => ({
@@ -14,7 +15,7 @@ import { useRouter } from "next/navigation";
   }));
 
 describe("Signupコンポーネント", () => {
-  const signupUrl = "http://localhost:3333/auth/signup";
+  const signupUrl = `${apiUrl.URL}/auth/signup`;
 
   // localStorageをモック化
   const mockLocalStorage = {
