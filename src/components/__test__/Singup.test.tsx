@@ -6,9 +6,28 @@ import {
   screen,
 } from "@testing-library/react";
 import Signup from "../Signup/Signup";
+import { useRouter } from "next/navigation";
+
+  // useRouterをモック化
+  jest.mock('next/navigation', () => ({
+    useRouter: jest.fn(),
+  }));
 
 describe("Signupコンポーネント", () => {
   const signupUrl = "http://localhost:3333/auth/signup";
+
+  // localStorageをモック化
+  const mockLocalStorage = {
+    setItem: jest.fn(),
+    getItem: jest.fn(),
+    removeItem: jest.fn(),
+    clear: jest.fn(),
+    length: 0,
+    key: jest.fn(),
+  };
+
+  // global.fetchをモック化
+  global.fetch = jest.fn();
 
   // フォーム入力
   const fillForm = async () => {
@@ -35,23 +54,38 @@ describe("Signupコンポーネント", () => {
     return "a".repeat(n);
   };
 
-  // テスト開始時にSignupコンポーネントをレンダリング
   beforeEach(() => {
-    const renderResult = render(<Signup />);
+    // テスト開始時にSignupコンポーネントをレンダリング
+    render(<Signup />);
+
+    // 各テストケースが実行される前にモックの設定を行う
+    (useRouter as jest.Mock).mockReturnValue({
+      push: jest.fn(),
+    });
+
+    Object.defineProperty(window, 'localStorage', {
+      value: mockLocalStorage,
+      writable: true
+    });
+
   });
 
-  // テスト終了時fetch関数のモック化を解除
+  // テスト終了時モック化を解除
   afterEach(() => {
     (global.fetch as jest.Mock).mockClear();
+    //(console.log as jest.Mock).mockClear();
+    //(window.alert as jest.Mock).mockClear();
+    (useRouter as jest.Mock).mockClear();
+    (window.localStorage.setItem as jest.Mock).mockClear();
     jest.restoreAllMocks();
   });
 
-  it("フォーム入力が正常に行え、fetchが正しく呼び出され、成功すること", async () => {
+  it("フォーム入力が正常に行え、fetch成功時の処理が行われること", async () => {
     const mockResponse = {
       ok: true,
       status: 200,
       json: async () => ({
-        accessToken: "token",
+        access_token: "token",
       }),
     };
 
@@ -83,6 +117,9 @@ describe("Signupコンポーネント", () => {
     // fetchの返り値が正しいことをテスト
     const fetchResponse = await global.fetch("dummyUrl", { method: "POST" });
     expect(fetchResponse).toEqual(mockResponse);
+
+    // localStorage.setItemが正しい引数で呼び出されたことをテスト
+    expect(window.localStorage.setItem).toHaveBeenCalledWith("access_token", "token");
   });
 
   it("fetchのレスポンスが失敗した場合、console.logとalertが実行されること", async () => {
