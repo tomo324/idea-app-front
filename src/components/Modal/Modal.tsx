@@ -3,12 +3,23 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal as MantineModal, Button } from "@mantine/core";
 import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Modal = ({ children }: { children: ReactNode }) => {
   const [opened, { open, close }] = useDisclosure(true);
-
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [prevPath, setPrevPath] = useState(pathname);
   const { back } = useRouter();
+
+  // ページ遷移時にモーダルを閉じる
+  useEffect(() => {
+    if (prevPath !== pathname) {
+      close();
+    }
+    setPrevPath(pathname);
+  }, [pathname, searchParams, close, prevPath]);
+
   const closeHandler = () => {
     close();
     back();
