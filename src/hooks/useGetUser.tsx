@@ -13,6 +13,7 @@ export const useGetUser = (jwt_token: string | null) => {
     }
     const response = await fetch(url, {
       method: "GET",
+      mode: "cors",
       headers: {
         Authorization: `Bearer ${jwt_token}`,
       },

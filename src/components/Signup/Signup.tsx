@@ -53,6 +53,7 @@ const Signup: React.FC = () => {
     try {
       const response = await fetch(signupUrl, {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -96,6 +97,7 @@ const Signup: React.FC = () => {
   // TODO 遷移先のコンポーネントでも、ユーザー情報が渡されていなければ'backend/users/me'から独自で取得するようにする→localStorageに保存されたJWT Tokenを使って取得する
   // TODO レスポンシブ対応する
   // TODO バックエンドを動かしてテストしてみる
+  // TODO fetchの方法が統一されていないのは分かりずらいかも。fetchの処理をカスタムフックに切り出す
 
   return (
     <div className="p-8 bg-white rounded shadow-md w-80vw sm:w-96">
