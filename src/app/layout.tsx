@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MantineProvider } from "@mantine/core";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -10,13 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, modal
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+      <html lang="ja">
+        <body>
+          <MantineProvider>
+            <div className={inter.className}>{children}{modal}</div>
+          </MantineProvider>
+        </body>
+      </html>
   );
 }
