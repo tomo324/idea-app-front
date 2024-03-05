@@ -3,11 +3,11 @@
 import useSWR from "swr";
 import { apiUrl } from "@/consts/apiUrl";
 
-export const useGetUser = (jwt_token: string | null) => {
+export const useGetUser = (access_token: string | null) => {
   const getUserUrl = `${apiUrl.URL}/users/me`;
 
   const fetcher = async (url: string) => {
-    if (!jwt_token) {
+    if (!access_token) {
       const error = new Error("No token found. Please login.");
       throw error;
     }
@@ -15,7 +15,7 @@ export const useGetUser = (jwt_token: string | null) => {
       method: "GET",
       mode: "cors",
       headers: {
-        Authorization: `Bearer ${jwt_token}`,
+        Authorization: `Bearer ${access_token}`,
       },
     });
 

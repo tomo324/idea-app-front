@@ -16,7 +16,6 @@ interface SignupForm {
 }
 
 const Signup: React.FC = () => {
-
   // パスワード表示制御
   const [isRevealPassword, setIsRevealPassword] = useState(false);
 
@@ -46,7 +45,6 @@ const Signup: React.FC = () => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {
-
     const signupUrl = `${apiUrl.URL}/auth/signup`;
     const { email, name, password } = data;
 

@@ -8,8 +8,8 @@ const UserHome = () => {
   
   useEffect(() => {
   // ローカルストレージからjwt_tokenを取得
-  const jwt_token = localStorage.getItem("jwt_token");
-  setToken(jwt_token);
+  const access_token = localStorage.getItem("access_token");
+  setToken(access_token);
   }, [])
 
   // ユーザー情報を取得するカスタムフックを使う
