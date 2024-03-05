@@ -6,8 +6,7 @@ import { signupValidationSchema } from "@/utils/validation/signupValidationSchem
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { useRouter } from "next/navigation";
-import { apiUrl } from "@/consts/apiUrl";
+import { useSignup } from "@/hooks/useSignup";
 
 interface SignupForm {
   email: string;
@@ -42,60 +41,8 @@ const Signup: React.FC = () => {
     resolver: zodResolver(signupValidationSchema),
   });
 
-  const router = useRouter();
-
-  const submitSignup = async (data: SignupForm) => {
-    const signupUrl = `${apiUrl.URL}/auth/signup`;
-    const { email, name, password } = data;
-
-    try {
-      const response = await fetch(signupUrl, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          name: name,
-          password: password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // レスポンスが成功した場合の処理
-        console.log("Success");
-
-        // 受け取ったJWT tokenをローカルに保存し、/homeに遷移する
-        localStorage.setItem("access_token", data.access_token);
-        router.push("/home");
-      } else {
-        // レスポンスが失敗した場合
-
-        // "Email already exists"のエラーメッセージを受け取った場合とそれ以外の場合で処理を分ける
-        if (data.message === "Email already exists") {
-          console.log("Email already exists", data);
-          alert("Email already exists");
-        } else {
-          console.log("Server Error", data);
-          alert("Server Error");
-        }
-      }
-    } catch (error) {
-      console.log("Fetch Error", error);
-      alert("Fetch Error");
-    }
-  };
-
-  // TODO メールアドレスが重複している場合の処理を追加する
-  // TODO fetchでaccess tokenを受け取った場合、その情報を持って/homeに遷移する。'Email already exists'エラーを受け取った場合はエラーメッセージを表示する。
-  // 遷移前にemailが重複していないか確認できるようにする。react-router-domのuseHistoryを使う
-  // TODO 遷移先のコンポーネントでも、ユーザー情報が渡されていなければ'backend/users/me'から独自で取得するようにする→localStorageに保存されたJWT Tokenを使って取得する
-  // TODO レスポンシブ対応する
-  // TODO バックエンドを動かしてテストしてみる
-  // TODO fetchの方法が統一されていないのは分かりずらいかも。fetchの処理をカスタムフックに切り出す
+  // カスタムフックの呼び出し
+  const { submitSignup } = useSignup();
 
   return (
     <div className="p-8 bg-white rounded shadow-md w-80vw sm:w-96">

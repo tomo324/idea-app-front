@@ -105,6 +105,7 @@ describe("Signupコンポーネント", () => {
     // fetchの引数が正しいことをテスト
     expect(global.fetch).toHaveBeenCalledWith(signupUrl, {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
