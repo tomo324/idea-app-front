@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { apiUrl } from "@/consts/apiUrl";
+import { cookies } from "next/headers";
 
 interface SignupForm {
   email: string;
@@ -34,8 +35,8 @@ export const useSignup = () => {
         // レスポンスが成功した場合の処理
         console.log("Success");
 
-        // 受け取ったJWT tokenをローカルに保存し、/homeに遷移する
-        localStorage.setItem("access_token", data.access_token);
+        // CookieにJWT tokenを保存する
+        cookies().set({name: "access_token", value: data.access_token, path: "/"})
         router.push("/home");
       } else {
         // レスポンスが失敗した場合

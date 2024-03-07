@@ -2,12 +2,21 @@
 
 import useSWR from "swr";
 import { apiUrl } from "@/consts/apiUrl";
+import React, { useEffect, useState } from "react";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-export const useGetUser = (access_token: string | null) => {
+export const useGetUser = (access_token: RequestCookie | undefined) => {
   const getUserUrl = `${apiUrl.URL}/users/me`;
 
+  const [token, setToken] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+
+    setToken(access_token?.value);
+  }, [access_token]);
+
   const fetcher = async (url: string) => {
-    if (!access_token) {
+    if (!token) {
       const error = new Error("No token found. Please login.");
       throw error;
     }
@@ -15,7 +24,7 @@ export const useGetUser = (access_token: string | null) => {
       method: "GET",
       mode: "cors",
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 
