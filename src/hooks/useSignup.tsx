@@ -1,6 +1,7 @@
+'use client';
+
 import { useRouter } from "next/navigation";
 import { apiUrl } from "@/consts/apiUrl";
-import { cookies } from "next/headers";
 
 interface SignupForm {
   email: string;
@@ -8,7 +9,7 @@ interface SignupForm {
   password: string;
 }
 
-export const useSignup = () => {
+export const useSignup = (setCookies: (token: string) => void) => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {
@@ -32,11 +33,10 @@ export const useSignup = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // レスポンスが成功した場合の処理
-        console.log("Success");
-
         // CookieにJWT tokenを保存する
-        cookies().set({name: "access_token", value: data.access_token, path: "/"})
+        setCookies(data.access_token);
+
+        console.log("Success");
         router.push("/home");
       } else {
         // レスポンスが失敗した場合

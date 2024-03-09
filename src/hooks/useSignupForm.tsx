@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { signupValidationSchema } from "@/utils/validation/signupValidationSchema";
+import { signupValidationSchema } from "@/utils/validations/signupValidationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 

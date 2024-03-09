@@ -1,11 +1,15 @@
+'use client';
+
 import React from "react";
-import { signupValidationSchema } from "@/utils/validation/signupValidationSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSignup } from "@/hooks/useSignup";
 import { useSignupForm } from "@/hooks/useSignupForm";
 
-const Signup: React.FC = () => {
+interface SignupProps {
+  setCookies: (token: string) => void;
+}
+
+const Signup: React.FC<SignupProps> = ({ setCookies }) => {
   // カスタムフックの呼び出し
   const {
     isRevealPassword,
@@ -17,7 +21,7 @@ const Signup: React.FC = () => {
     isValid,
   } = useSignupForm();
   
-  const { submitSignup } = useSignup();
+  const { submitSignup } = useSignup(setCookies);
 
   return (
     <div className="p-8 bg-white rounded shadow-md w-80vw sm:w-96">

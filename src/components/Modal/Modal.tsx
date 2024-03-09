@@ -1,9 +1,11 @@
-import { Modal as MantineModal, Button } from "@mantine/core";
-import { ReactNode, useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+"use client";
+
+import { Modal as MantineModal } from "@mantine/core";
+import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModal";
 
-const Modal = ({ children }: { children: ReactNode }) => {
+const Modal = ({ children }: { children: any }) => {
   const { back } = useRouter();
 
   // カスタムフックの呼び出し

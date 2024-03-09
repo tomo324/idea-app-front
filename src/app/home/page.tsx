@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useGetUser } from "../../hooks/useGetUser";
-import { cookies } from "next/headers";
+import { getCookies } from "@/utils/actions/cookies";
+
+// 子のクライアントコンポーネントに渡すためのcookieを取得する親のサーバーコンポーネント
 
 const UserHome = () => {
-
-  // クッキーからjwt_tokenを取得
-  const access_token = cookies().get("access_token");
+  const access_token = getCookies();
 
   // ユーザー情報を取得するカスタムフックを使う
   const { data, error, isLoading } = useGetUser(access_token);

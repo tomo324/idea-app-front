@@ -2,7 +2,7 @@
 
 import { useDisclosure } from "@mantine/hooks";
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 
 export const useModal = () => {
@@ -19,5 +19,5 @@ export const useModal = () => {
     setPrevPath(pathname);
   }, [pathname, searchParams, close, prevPath]);
 
-  return { opened, open, close}
+  return { opened, open, close }
 }
