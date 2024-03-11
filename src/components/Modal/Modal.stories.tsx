@@ -13,5 +13,5 @@ export default meta;
 export const StoryAuthModal: StoryObj<typeof Modal> = (args: any) => <Modal {...args} />;
 
 StoryAuthModal.args = {
-  children: <Signup setCookies={setCookies}/>,
+  children: <Signup />,
 };

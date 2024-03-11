@@ -7,7 +7,7 @@ const SignupPage = () => {
   return (
     <main className="flex flex-col items-center justify-center h-full">
       <Link href="/">← back to top</Link>
-      <Signup setCookies={setCookies} />
+      <Signup />
     </main>
   );
 };

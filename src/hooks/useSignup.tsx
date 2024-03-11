@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { apiUrl } from "@/consts/apiUrl";
+import { setCookies } from "@/utils/actions/cookies";
 
 interface SignupForm {
   email: string;
@@ -9,7 +10,7 @@ interface SignupForm {
   password: string;
 }
 
-export const useSignup = (setCookies: (token: string) => void) => {
+export const useSignup = () => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {

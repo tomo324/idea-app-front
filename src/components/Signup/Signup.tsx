@@ -5,11 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSignup } from "@/hooks/useSignup";
 import { useSignupForm } from "@/hooks/useSignupForm";
 
-interface SignupProps {
-  setCookies: (token: string) => void;
-}
 
-const Signup: React.FC<SignupProps> = ({ setCookies }) => {
+const Signup: React.FC = () => {
   // カスタムフックの呼び出し
   const {
     isRevealPassword,
@@ -21,7 +18,7 @@ const Signup: React.FC<SignupProps> = ({ setCookies }) => {
     isValid,
   } = useSignupForm();
   
-  const { submitSignup } = useSignup(setCookies);
+  const { submitSignup } = useSignup();
 
   return (
     <div className="p-8 bg-white rounded shadow-md w-80vw sm:w-96">

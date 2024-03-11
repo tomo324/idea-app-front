@@ -7,7 +7,7 @@ const SignupPage = () => {
   return (
     <div className="flex items-center justify-center">
       <Modal>
-        <Signup setCookies={setCookies} />
+        <Signup />
       </Modal>
     </div>
   );

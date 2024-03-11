@@ -3,17 +3,18 @@
 import useSWR from "swr";
 import { apiUrl } from "@/consts/apiUrl";
 import React, { useEffect, useState } from "react";
-import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { getCookies } from "@/utils/actions/cookies";
 
-export const useGetUser = (access_token: RequestCookie | undefined) => {
+export const useGetUser = () => {
+
   const getUserUrl = `${apiUrl.URL}/users/me`;
 
   const [token, setToken] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-
-    setToken(access_token?.value);
-  }, [access_token]);
+    const token = getCookies();
+    setToken(token);
+  }, [])
 
   const fetcher = async (url: string) => {
     if (!token) {

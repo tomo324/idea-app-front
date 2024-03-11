@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModal";
 
-const Modal = ({ children }: { children: any }) => {
+const Modal = ({ children }: { children: ReactNode }) => {
   const { back } = useRouter();
 
   // カスタムフックの呼び出し

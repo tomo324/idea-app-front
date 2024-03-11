@@ -1,14 +1,15 @@
-import React from "react";
+'use client';
+
+import React, { useEffect, useState } from "react";
 import { useGetUser } from "../../hooks/useGetUser";
-import { getCookies } from "@/utils/actions/cookies";
 
 // 子のクライアントコンポーネントに渡すためのcookieを取得する親のサーバーコンポーネント
+// このコンポーネントがクライアントコンポーネントでOKならpropsで渡す必要はない？
 
 const UserHome = () => {
-  const access_token = getCookies();
 
   // ユーザー情報を取得するカスタムフックを使う
-  const { data, error, isLoading } = useGetUser(access_token);
+  const { data, error, isLoading } = useGetUser();
 
   if (error) return <div>Error: {error.message}</div>;
   if (isLoading) return <div>loading...</div>;
