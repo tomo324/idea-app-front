@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Modal from "./Modal";
 import Signup from "../Signup/Signup";
-import { setCookies } from "@/utils/actions/cookies";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,

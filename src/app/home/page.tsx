@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetUser } from "../../hooks/useGetUser";
 
-// 子のクライアントコンポーネントに渡すためのcookieを取得する親のサーバーコンポーネント
-// このコンポーネントがクライアントコンポーネントでOKならpropsで渡す必要はない？
-
 const UserHome = () => {
 
   // ユーザー情報を取得するカスタムフックを使う

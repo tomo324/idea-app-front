@@ -1,7 +1,6 @@
 import React from "react";
 import Signup from "@/components/Signup/Signup";
 import Link from "next/link";
-import { setCookies } from "@/utils/actions/cookies";
 
 const SignupPage = () => {
   return (

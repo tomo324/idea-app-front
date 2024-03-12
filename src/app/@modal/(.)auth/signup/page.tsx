@@ -1,7 +1,6 @@
 import Modal from "@/components/Modal/Modal";
 import Signup from "../../../../components/Signup/Signup";
 import React from "react";
-import { setCookies } from "@/utils/actions/cookies";
 
 const SignupPage = () => {
   return (
