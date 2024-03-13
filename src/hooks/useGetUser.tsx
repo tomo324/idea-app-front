@@ -1,10 +1,9 @@
 "use client";
 
 import useSWR from "swr";
-import { apiUrl } from "@/consts/apiUrl";
 
 export const useGetUser = () => {
-  const getUserUrl = `${apiUrl.URL}/users/me`;
+  const getUserUrl = `${process.env.NEXT_PUBLIC_API_URL}/users/me`;
 
   const fetcher = async (url: string) => {
     const response = await fetch(url, {

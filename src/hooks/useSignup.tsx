@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { apiUrl } from "@/consts/apiUrl";
 
 interface SignupForm {
   email: string;
@@ -13,7 +12,7 @@ export const useSignup = () => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {
-    const signupUrl = `${apiUrl.URL}/auth/signup`;
+    const signupUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`;
     const { email, name, password } = data;
 
     try {
