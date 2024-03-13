@@ -1,47 +1,23 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { signupValidationSchema } from "@/utils/validation/signupValidationSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { useSignup } from "@/hooks/useSignup";
+import { useSignupForm } from "@/hooks/useSignupForm";
 
-interface SignupForm {
-  email: string;
-  name: string;
-  password: string;
-}
 
 const Signup: React.FC = () => {
-  // パスワード表示制御
-  const [isRevealPassword, setIsRevealPassword] = useState(false);
-
-  // iconの切り替え
-  const [icon, setIcon] = useState(faEyeSlash);
-
-  // パスワード表示切り替え時にiconを切り替える
-  useEffect(() => {
-    setIcon(isRevealPassword ? faEye : faEyeSlash);
-  }, [isRevealPassword]);
-
-  // パスワード表示切り替え
-  const togglePassword = () => {
-    setIsRevealPassword((prevState) => !prevState);
-  };
-
+  // カスタムフックの呼び出し
   const {
+    isRevealPassword,
+    icon,
+    togglePassword,
     register,
     handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<SignupForm>({
-    mode: "onChange",
-    shouldUnregister: false,
-    resolver: zodResolver(signupValidationSchema),
-  });
-
-  // カスタムフックの呼び出し
+    errors,
+    isValid,
+  } = useSignupForm();
+  
   const { submitSignup } = useSignup();
 
   return (

@@ -1,5 +1,6 @@
+'use client';
+
 import { useRouter } from "next/navigation";
-import { apiUrl } from "@/consts/apiUrl";
 
 interface SignupForm {
   email: string;
@@ -11,13 +12,14 @@ export const useSignup = () => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {
-    const signupUrl = `${apiUrl.URL}/auth/signup`;
+    const signupUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`;
     const { email, name, password } = data;
 
     try {
       const response = await fetch(signupUrl, {
         method: "POST",
         mode: "cors",
+        credentials: 'include',
         headers: {
           "Content-Type": "application/json",
         },
@@ -28,17 +30,13 @@ export const useSignup = () => {
         }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        // レスポンスが成功した場合の処理
+        // レスポンスが成功した場合、レスポンスボディは空なので、そのまま次のページに遷移する
         console.log("Success");
-
-        // 受け取ったJWT tokenをローカルに保存し、/homeに遷移する
-        localStorage.setItem("access_token", data.access_token);
         router.push("/home");
       } else {
         // レスポンスが失敗した場合
+        const data = await response.json();
 
         // "Email already exists"のエラーメッセージを受け取った場合とそれ以外の場合で処理を分ける
         if (data.message === "Email already exists") {

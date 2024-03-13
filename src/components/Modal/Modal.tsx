@@ -1,24 +1,15 @@
 "use client";
 
-import { useDisclosure } from "@mantine/hooks";
-import { Modal as MantineModal, Button } from "@mantine/core";
-import { ReactNode, useEffect, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Modal as MantineModal } from "@mantine/core";
+import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
+import { useModal } from "@/hooks/useModal";
 
 const Modal = ({ children }: { children: ReactNode }) => {
-  const [opened, { open, close }] = useDisclosure(true);
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [prevPath, setPrevPath] = useState(pathname);
   const { back } = useRouter();
 
-  // ページ遷移時にモーダルを閉じる
-  useEffect(() => {
-    if (prevPath !== pathname) {
-      close();
-    }
-    setPrevPath(pathname);
-  }, [pathname, searchParams, close, prevPath]);
+  // カスタムフックの呼び出し
+  const { opened, open, close } = useModal();
 
   const closeHandler = () => {
     close();

@@ -8,6 +8,6 @@ const SignupPage = () => {
       <Link href="/">← back to top</Link>
       <Signup />
     </main>
-  )
-} 
+  );
+};
 export default SignupPage;
