@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSignup } from "@/hooks/useSignup";
-import { useSignupForm } from "@/hooks/useSignupForm";
-
+import { useSignup } from "@/hooks/auth/useSignup";
+import { useSignupForm } from "@/hooks/auth/useSignupForm";
 
 const Signup: React.FC = () => {
   // カスタムフックの呼び出し
@@ -17,7 +16,7 @@ const Signup: React.FC = () => {
     errors,
     isValid,
   } = useSignupForm();
-  
+
   const { submitSignup } = useSignup();
 
   return (

@@ -1,11 +1,13 @@
+import React from "react";
+import Link from 'next/link';
 import Signin from '../../../components/Signin/Signin';
 
 const SigninPage = () => {
   return (
-    <div>
-      <h1>SigninPage</h1>
+    <main className="flex flex-col items-center justify-center h-full">
+      <Link href="/">← back to top</Link>
       <Signin />
-    </div>
+    </main>
   );
 }
 

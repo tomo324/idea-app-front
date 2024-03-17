@@ -1,10 +1,12 @@
+import Modal from '@/components/Modal/Modal';
 import Signin from '../../../../components/Signin/Signin';
 
 const SigninPage = () => {
   return (
-    <div>
-      <h1>SigninPage</h1>
-      <Signin />
+    <div className="flex items-center justify-center">
+      <Modal>
+        <Signin />
+      </Modal>
     </div>
   );
 }
