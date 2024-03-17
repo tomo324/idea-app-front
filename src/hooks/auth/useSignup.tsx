@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useRouter } from "next/navigation";
 
@@ -19,7 +19,7 @@ export const useSignup = () => {
       const response = await fetch(signupUrl, {
         method: "POST",
         mode: "cors",
-        credentials: 'include',
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,4 +54,4 @@ export const useSignup = () => {
   };
 
   return { submitSignup };
-}
+};
