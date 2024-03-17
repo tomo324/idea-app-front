@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import { useDisclosure } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
 
 export const useModal = () => {
   const [opened, { open, close }] = useDisclosure(true);
@@ -19,5 +18,5 @@ export const useModal = () => {
     setPrevPath(pathname);
   }, [pathname, searchParams, close, prevPath]);
 
-  return { opened, open, close }
-}
+  return { opened, open, close };
+};

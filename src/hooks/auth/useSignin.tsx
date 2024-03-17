@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -20,7 +20,7 @@ export const useSignin = () => {
       const response = await fetch(signinUrl, {
         method: "POST",
         mode: "cors",
-        credentials: 'include',
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -39,10 +39,13 @@ export const useSignin = () => {
         const data = await response.json();
 
         // 'Credentials incorrect'のエラーメッセージを受け取った場合とそれ以外の場合で処理を分ける
-        if (data.message === 'Credentials incorrect') {
-          console.log('Invalid Email address or password. Please try again.', data);
-          alert('Invalid Email address or password. Please try again.');
-          reset({ password: "" })
+        if (data.message === "Credentials incorrect") {
+          console.log(
+            "Invalid Email address or password. Please try again.",
+            data
+          );
+          alert("Invalid Email address or password. Please try again.");
+          reset({ password: "" });
         } else {
           console.log("Server Error", data);
           alert("Server Error");
@@ -55,4 +58,4 @@ export const useSignin = () => {
   };
 
   return { submitSignin };
-}
+};
