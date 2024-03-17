@@ -27,7 +27,7 @@ describe("Signinコンポーネント", () => {
 
   // フォーム送信
   const submitForm = async () => {
-    fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
     await new Promise((resolve) => setTimeout(resolve, 100));
   };
 
@@ -171,13 +171,13 @@ describe("Signinコンポーネント", () => {
     expect(window.alert).toHaveBeenCalledTimes(1);
     // alertの引数が正しいことを確認
     expect(window.alert).toHaveBeenCalledWith('Invalid Email address or password. Please try again.');
-    // パスワードのフォームが空になっていることを確認
+    // TODO パスワードのフォームが空になっていることを確認
     expect(screen.getByLabelText("Password")).toHaveValue("");
   });
 
   it("すべてのフォームが空の場合、Signinボタンを押せないこと", async () => {
     // Signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
   });
 
@@ -202,7 +202,7 @@ describe("Signinコンポーネント", () => {
     ).toBeInTheDocument();
 
     // Signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
   });
 
@@ -216,7 +216,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // Signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
   });
 
@@ -230,7 +230,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // Signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
   });
 
@@ -245,7 +245,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // Signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
 
     // エラーメッセージが表示されていることを確認
@@ -266,7 +266,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
 
     // エラーメッセージが表示されていることを確認
@@ -285,7 +285,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
 
     // エラーメッセージが表示されていることを確認
@@ -306,7 +306,7 @@ describe("Signinコンポーネント", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     // signinボタンが無効化されていることを確認
-    const signinButton = screen.getByRole("button", { name: "Sign In" });
+    const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
 
     // エラーメッセージが表示されていることを確認
