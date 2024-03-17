@@ -23,7 +23,7 @@ const Signin: React.FC = () => {
     <div className="p-8 bg-white rounded shadow-md w-80vw sm:w-96">
       <form onSubmit={handleSubmit(submitSignin)}>
         <h2 className="mb-8 text-3xl font-semibold text-center text-gray-700">
-          Sign In
+          Login
         </h2>
         <label htmlFor="email" className="block text-sm text-gray-700">
           Email
@@ -72,7 +72,7 @@ const Signin: React.FC = () => {
           }`}
           disabled={!isValid}
         >
-          Sign In
+          Login
         </button>
       </form>
     </div>
