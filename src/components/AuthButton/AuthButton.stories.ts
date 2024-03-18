@@ -12,12 +12,12 @@ export const StorySignupButton = {
   args: {
     path: "auth/signup",
     children: "Sign Up",
-  }
+  },
 };
 
 export const StorySigninButton = {
   args: {
     path: "auth/signin",
     children: "Sign In",
-  }
+  },
 };
