@@ -15,7 +15,7 @@ export const useSignin = () => {
   const submitSignin = async (data: SigninForm) => {
     const signinUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signin`;
     const { email, password } = data;
-
+  
     try {
       const response = await fetch(signinUrl, {
         method: "POST",
