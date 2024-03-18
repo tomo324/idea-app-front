@@ -3,7 +3,7 @@
 import useSWR from "swr";
 
 export const useGetUser = () => {
-  const getUserUrl = `${process.env.NEXT_PUBLIC_API_URL}/users/me`;
+  const getUserUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/users/me`;
 
   const fetcher = async (url: string) => {
     const response = await fetch(url, {

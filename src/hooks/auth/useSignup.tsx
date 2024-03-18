@@ -12,7 +12,7 @@ export const useSignup = () => {
   const router = useRouter();
 
   const submitSignup = async (data: SignupForm) => {
-    const signupUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`;
+    const signupUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signup`;
     const { email, name, password } = data;
 
     try {
