@@ -13,7 +13,7 @@ export const useSignin = () => {
   const { reset } = useForm<SigninForm>();
 
   const submitSignin = async (data: SigninForm) => {
-    const signinUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signin`;
+    const signinUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signin`;
     const { email, password } = data;
   
     try {
