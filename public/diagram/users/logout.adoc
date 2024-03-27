@@ -10,7 +10,7 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as server
 entity "Database" as db
-client->next: "/users/logout/:id"
+client->next: "/users/logout"
 next->next: Discard accessToken
 next->client: Return \n Response "200" \n and redirect to "/"
 ....

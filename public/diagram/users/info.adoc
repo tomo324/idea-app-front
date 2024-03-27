@@ -10,7 +10,7 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
-client->next: "/users/:id"
+client->next: "/users"
 next->nest: GET "/users/me" with Cookie
 nest->nest: Get accessToken from Cookie \n and verify it
 nest->db: Find user by  accessToken
