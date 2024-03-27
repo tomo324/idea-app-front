@@ -1,0 +1,26 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /home
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as nest
+entity "Database" as db
+client->next: "/home"
+next->nest: GET "/users/me" with Cookie
+nest->nest: Get accessToken from Cookie \n and verify it
+nest->db: Find user by  accessToken
+db->nest: Return user
+nest->next: Return user
+next->next: Set userId and userName in localStorage
+next->client: Return \n Response "200"
+next->nest: GET "/get-all-posts"
+nest->db: fetch posts and aiPosts
+db->nest: Return posts and aiPosts
+nest->next: Return posts and aiPosts
+next->client: display posts and aiPosts
+....
