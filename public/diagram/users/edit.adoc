@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /users/edit/:id
+title /users/edit
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
