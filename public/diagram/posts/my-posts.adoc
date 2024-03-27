@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /users/posts
+title /posts/my-posts
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -10,8 +10,8 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
-client->next: "/users/posts"
-next->nest: GET "/users/posts" with Cookie
+client->next: "/posts/my-posts"
+next->nest: GET "/posts/my-posts" with Cookie
 nest->nest: Get accessToken from Cookie \n and verify it
 nest->db: Find posts by userId
 db->nest: Return posts
