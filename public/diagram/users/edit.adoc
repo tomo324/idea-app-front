@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /user/edit/:id
+title /users/edit/:id
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -10,7 +10,7 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
-client->next: "/user/edit/:id" \n with new userdata
+client->next: "/users/edit/:id" \n with new userdata
 next->nest: PATCH "/users" with \n new userdata and Cookie
 nest->nest: Get accessToken from Cookie \n and verify it
 nest->db: edit user by id \n from accessToken

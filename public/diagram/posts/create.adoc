@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /post/create
+title /posts/create
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -10,10 +10,10 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
-client->next: "/post/create" with content
-next->nest: POST "/post/create" \n with content and Cookie
+client->next: "/posts/create" with content
+next->nest: POST "/posts/create" \n with content and Cookie
 nest->nest: get accessToken from Cookie \n and verify it
 nest->db: save post
 nest->next: return Response "201"
-next->client: return Response "201" \n and redirect to "/post"
+next->client: return Response "201" \n and redirect to "/posts"
 ....

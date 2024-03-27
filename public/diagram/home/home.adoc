@@ -18,9 +18,14 @@ db->nest: Return user
 nest->next: Return user
 next->next: Set userId and userName in localStorage
 next->client: Return \n Response "200"
-next->nest: GET "/get-all-posts"
-nest->db: fetch posts and aiPosts
-db->nest: Return posts and aiPosts
-nest->next: Return posts and aiPosts
-next->client: display posts and aiPosts
+next->nest: GET "/posts" \n with Cookie
+nest->db: fetch posts
+db->nest: return posts
+nest->next: return posts
+next->nest: GET "/ai-posts" \n with Cookie
+nest->db: fetch ai-posts
+db->nest: return ai-posts
+nest->next: return ai-posts
+next->client: display posts and ai-posts
+
 ....
