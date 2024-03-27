@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /post/:id
+title /ai-posts
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -11,12 +11,11 @@ entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
 
-client->next: "/post/:id"
-next->nest: GET "/post/:id" \n with Cookie
+client->next: "/ai-posts"
+next->nest: GET "/ai-posts" \n with Cookie
 nest->nest: get accessToken from Cookie \n and verify it
-nest->nest: check if this post is \n owned by user
-nest->db: fetch post by id
-db->nest: return post
-nest->next: return post
-next->client: display post
+nest->db: fetch ai-posts
+db->nest: return ai-posts
+nest->next: return ai-posts
+next->client: display ai-posts
 ....

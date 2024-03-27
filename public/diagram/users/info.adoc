@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /user/:id
+title /users/:id
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -10,7 +10,7 @@ actor client
 entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
-client->next: "/user/:id"
+client->next: "/users/:id"
 next->nest: GET "/users/me" with Cookie
 nest->nest: Get accessToken from Cookie \n and verify it
 nest->db: Find user by  accessToken
