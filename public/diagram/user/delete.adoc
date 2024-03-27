@@ -1,0 +1,20 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /user/delete/:id
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as nest
+entity "Database" as db
+client->next: "/user/delete/:id"
+next->nest: DELETE "/users" \n with Cookie
+nest->nest: Get accessToken from Cookie \n and verify it
+nest->db: delete user by id \n from accessToken
+nest->nest: delete accessToken from Cookie
+nest->next: return Response "200"
+next->client: return Response "200" \n and redirect to "/"
+....

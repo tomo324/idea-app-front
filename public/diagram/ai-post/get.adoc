@@ -1,0 +1,21 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /ai-post
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as nest
+entity "Database" as db
+
+client->next: "/ai-post"
+next->nest: GET "/ai-post" \n with Cookie
+nest->nest: get accessToken from Cookie \n and verify it
+nest->db: fetch ai-posts
+db->nest: return ai-posts
+nest->next: return ai-posts
+next->client: display ai-posts
+....

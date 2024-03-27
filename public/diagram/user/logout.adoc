@@ -1,0 +1,16 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /user/logout/:id
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as server
+entity "Database" as db
+client->next: "/user/logout/:id"
+next->next: Discard accessToken
+next->client: Return \n Response "200" \n and redirect to "/"
+....

@@ -1,0 +1,20 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /auth/signup
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as nest
+entity "Database" as db
+client->next: "/auth/signup" with email, name, pass
+next->nest: POST "/auth/signup" \n with email, name, pass
+nest->db: Save user
+nest->nest: Generate accessToken
+nest->next: Return accessToken \n in Http header "Set-Cookie" \n with httpOnly, secure, samesite=None
+next->next: Set accessToken to Cookie
+next->client: Return Response "201" \n redirect to "/home"
+....

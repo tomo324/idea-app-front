@@ -1,0 +1,25 @@
+[plantuml,alice-bob,svg,role=sequence]
+....
+title /ai-post/create
+skinparam monochrome true
+skinparam ranksep 20
+skinparam dpi 150
+skinparam arrowThickness 0.7
+
+actor client
+entity "Next.js server" as next
+entity "Nestjs server" as nest
+entity "ChatGPT server" as gpt
+entity "Database" as db
+client->next: "/ai-post/create"
+next->nest: POST "/ai-post/create" \n with Cookie
+nest->nest: get accessToken from Cookie \n and verify it
+nest->db: fetch random posts
+db->nest: return postContents
+nest->gpt: send postContents
+gpt->gpt: generate AIContent
+gpt->nest: return AIContent
+nest->db: create new AIPost with \n AIContent
+nest->next: return Response "201"
+next->client: return Response "201" \n and redirect to "/ai-post"
+....
