@@ -14,9 +14,9 @@ entity "Database" as db
 client->next: "/posts/:id"
 next->nest: GET "/posts/:id" \n with Cookie
 nest->nest: get accessToken from Cookie \n and verify it
-nest->nest: check if this post is \n owned by user
 nest->db: fetch post by id
 db->nest: return post
 nest->next: return post
+next->next: check if this post is \n owned by user
 next->client: display post
 ....
