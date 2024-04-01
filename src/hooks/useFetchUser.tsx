@@ -2,7 +2,7 @@
 
 import useSWR from "swr";
 
-export const useGetUser = () => {
+export const useFetchUser = () => {
   const getUserUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/users/me`;
 
   const fetcher = async (url: string) => {
