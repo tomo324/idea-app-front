@@ -1,5 +1,5 @@
 [blockdiag,react-tree,svg,role=sequence]
-// TODO AI機能のAPIの実装が終わったら他も追加する。postのみを取得するページもそのタイミングで。
+// TODO AI機能のAPIの実装が終わったら他も追加する。
 // TODO posts/:idのページは後で追加する
 
 ....
@@ -67,6 +67,8 @@ blockdiag {
     Post_AIPostList -> AIPostList
     PostList -> "useFetchPosts(SWR)";
     PostList -> PostItem;
+    PostItem -> DeletePostButton;
+    DeletePostButton -> "/posts/delete/:id" [label = "redirect"];
     PostItem -> usePostState;
     AIPostList -> "useFetchAIPosts(SWR)";
     AIPostList -> AIPostItem;
@@ -78,6 +80,7 @@ blockdiag {
   Post_AIPostList [color = "lightgreen"];
   PostList [color = "lightgreen"];
   PostItem [color = "lightgreen"];
+  DeletePostButton [color = "lightgreen"];
   AIPostList [color = "lightgreen"];
   AIPostItem [color = "lightgreen"];
   Footer [color = "lightgreen"];
@@ -102,6 +105,26 @@ blockdiag {
   "useModal(create)" [color = "lightblue"];
   useCreatePostForm [color = "lightblue"];
   useCreatePost [color = "lightblue"];
+
+  // route /posts
+  group {
+    label = "route /posts"
+    "(/posts)page" -> "Header(posts)";
+    "(/posts)page" -> "PostList(posts)";
+    "PostList(posts)" -> "useFetchPosts(SWR)(posts)";
+    "PostList(posts)" -> "PostItem(posts)";
+    "PostItem(posts)" -> "DeletePostButton(posts)";
+    "DeletePostButton(posts)" -> "/posts/delete/:id(posts)" [label = "redirect"];
+    "PostItem(posts)" -> "usePostState(posts)";
+  }
+
+  "Header(posts)" [color = "lightgreen"];
+  "PostList(posts)" [color = "lightgreen"];
+  "useFetchPosts(SWR)(posts)" [color = "lightblue"];
+  "PostItem(posts)" [color = "lightgreen"];
+  "DeletePostButton(posts)" [color = "lightgreen"];
+  "usePostState(posts)" [color = "lightblue"];
+
 
   // route /posts/delete/:id
   group {
