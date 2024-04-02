@@ -1,4 +1,7 @@
 [plantuml,alice-bob,svg,role=sequence]
+
+// usersで確認すればいいので、ここではユーザーを取得しない。ログイン中のユーザー情報はJWTに格納済みなのでここで取得する必要はない
+
 ....
 title /home
 skinparam monochrome true
@@ -11,14 +14,8 @@ entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
 client->next: "/home"
-next->nest: GET "/users/me" with Cookie
-nest->nest: Get accessToken from Cookie \n and verify it
-nest->db: Find user by  accessToken
-db->nest: Return user
-nest->next: Return user
-next->next: Set userId and userName in localStorage
-next->client: Return \n Response "200"
 next->nest: GET "/posts" \n with Cookie
+nest->nest: Get accessToken from Cookie \n and verify it
 nest->db: fetch posts
 db->nest: return posts
 nest->next: return posts
@@ -27,5 +24,4 @@ nest->db: fetch ai-posts
 db->nest: return ai-posts
 nest->next: return ai-posts
 next->client: display posts and ai-posts
-
 ....
