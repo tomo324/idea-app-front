@@ -16,13 +16,13 @@ const Sidebar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-20 h-screen bg-white border-r">
+    <div className="fixed inset-y-0 left-0 w-20 h-screen bg-white border-r">
       <div className="flex flex-col justify-between items-center h-3/5 w-20 bg-white border-r">
         {icons.map(({ icon, path }) => (
           <Link
             href={path}
             key={path}
-            className={`p-2 flex items-center my-4 hover:bg-gray-200 rounded-full ${
+            className={`p-2 flex items-center my-4 hover:bg-gray-200 ${
               pathname === path ? "border-l-2 border-blue-500 h-8" : ""
             }`}
           >

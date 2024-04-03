@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFetchUser } from "../../hooks/useFetchUser";
+import { BrowserView, MobileView } from "react-device-detect"
 import Sidebar from "@/components/Menu/Sidebar/Sidebar";
+import Footer from "@/components/Menu/Footer/Footer";
 
 const UserHome = () => {
   // ユーザー情報を取得するカスタムフックを使う
@@ -13,7 +15,16 @@ const UserHome = () => {
 
   return (
     <div>
-      <Sidebar />
+
+      <BrowserView>
+        <Sidebar />
+      </BrowserView>
+
+      <MobileView>
+        <Footer />
+      </MobileView>
+
+    <p>hello, {data?.name}!</p>
     </div>
   );
 };
