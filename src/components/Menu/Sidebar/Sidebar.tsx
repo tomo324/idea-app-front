@@ -16,8 +16,8 @@ const Sidebar: React.FC = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-20 h-screen bg-white">
-      <div className="flex flex-col justify-between items-center h-3/5 w-20 bg-white">
+    <div className="w-20 h-screen bg-white border-r">
+      <div className="flex flex-col justify-between items-center h-3/5 w-20 bg-white border-r">
         {icons.map(({ icon, path }) => (
           <Link
             href={path}
