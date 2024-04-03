@@ -8,9 +8,6 @@ const UserHome = () => {
   // ユーザー情報を取得するカスタムフックを使う
   const { data, error, isLoading } = useFetchUser();
 
-  //const data = { name: "test" };
-  //const isLoading = false;
-
   if (error) return <div>Error: {error.message}</div>;
   if (isLoading) return <div>loading...</div>;
 
