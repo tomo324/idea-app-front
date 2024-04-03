@@ -15,12 +15,12 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-white flex justify-center">
-      <div className="flex justify-between items-center bg-white border-t w-full px-4">
+      <div className="flex justify-between items-center bg-white border-t w-full px-4 py-2">
         {icons.map(({ icon, path }) => (
           <Link
             href={path}
             key={path}
-            className={`p-2 flex items-center justify-center ${
+            className={`p-2 flex items-center justify-center hover:bg-gray-200 rounded-full ${
               pathname === path ? "border-b-2 border-blue-500 h-8" : ""
             }`}
           >

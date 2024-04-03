@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
           <Link
             href={path}
             key={path}
-            className={`p-2 flex items-center my-4 ${
+            className={`p-2 flex items-center my-4 hover:bg-gray-200 rounded-full ${
               pathname === path ? "border-l-2 border-blue-500 h-8" : ""
             }`}
           >
