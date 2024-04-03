@@ -30,6 +30,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@iconify/icons-mdi": "^1.2.48",
+    "@iconify/react": "^4.1.1",
     "@storybook/addon-essentials": "^7.6.12",
     "@storybook/addon-interactions": "^7.6.12",
     "@storybook/addon-links": "^7.6.12",
