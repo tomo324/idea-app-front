@@ -61,9 +61,8 @@ blockdiag {
     label = "route /home"
     "(/home)page" -> Header;
     "(/home)page" -> Post_AIPostList;
-    "(/home)page" -> useIsPC;
-    "(/home)page" -> Sidebar [label = "true"];
-    "(/home)page" -> Footer [label = "false"];
+    "(/home)page" -> Sidebar [label = "pc"];
+    "(/home)page" -> Footer [label = "sp"];
     Header -> PostButton;
     Post_AIPostList -> PostList
     Post_AIPostList -> AIPostList
@@ -78,7 +77,6 @@ blockdiag {
     PostButton -> "/posts/create" [label = "redirect"];
   }
 
-  useIsPC [color = "lightblue"];
   Sidebar [color = "lightgreen"];
   Header [color = "lightgreen"];
   Post_AIPostList [color = "lightgreen"];
@@ -115,9 +113,8 @@ blockdiag {
     label = "route /posts"
     "(/posts)page" -> "Header(posts)";
     "(/posts)page" -> "PostList(posts)";
-    "(/posts)page" -> "useIsPC(posts)";
-    "(/posts)page" -> "Sidebar(posts)" [label = "true"];
-    "(/posts)page" -> "Footer(posts)" [label = "false"];
+    "(/posts)page" -> "Sidebar(posts)" [label = "pc"];
+    "(/posts)page" -> "Footer(posts)" [label = "sp"];
     "Header(posts)" -> "PostButton(posts)";
     "PostButton(posts)" -> "/posts/create(posts)" [label = "redirect"];
     "PostList(posts)" -> "useFetchPosts(SWR)(posts)";
@@ -134,7 +131,6 @@ blockdiag {
   "PostItem(posts)" [color = "lightgreen"];
   "DeletePostButton(posts)" [color = "lightgreen"];
   "usePostState(posts)" [color = "lightblue"];
-  "useIsPC(posts)" [color = "lightblue"];
   "Sidebar(posts)" [color = "lightgreen"];
   "Footer(posts)" [color = "lightgreen"];
 
