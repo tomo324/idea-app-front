@@ -8,7 +8,6 @@ import Header from "@/components/Header/Header";
 
 
 const AiPost = () => {
-  // react-device-detectを使うとエラーが出る
   return (
     <div>
 
