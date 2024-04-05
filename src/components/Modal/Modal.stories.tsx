@@ -4,15 +4,15 @@ import Signup from "../Signup/Signup";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,
-  title: "AuthModal",
+  title: "Modal",
 };
 
 export default meta;
 
-export const StoryAuthModal: StoryObj<typeof Modal> = (args: any) => (
+export const StoryModal: StoryObj<typeof Modal> = (args: any) => (
   <Modal {...args} />
 );
 
-StoryAuthModal.args = {
+StoryModal.args = {
   children: <Signup />,
 };
