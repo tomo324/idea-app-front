@@ -15,17 +15,18 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="fixed inset-x-0 bottom-0 bg-white flex justify-center">
-      <div className="flex justify-between items-center bg-white border-t w-full px-4 py-2">
+      <div className="flex justify-between items-center bg-white border-t w-full px-4 pb-2">
         {icons.map(({ icon, path }) => (
-          <Link
-            href={path}
-            key={path}
-            className={`p-2 flex items-center justify-center hover:bg-gray-200 ${
-              pathname === path ? "border-b-2 border-blue-500 h-8" : ""
-            }`}
-          >
-            <Icon icon={icon} className="text-2xl" />
-          </Link>
+          <div key={path} className={`p-1 flex items-center justify-center ${
+            pathname === path ? "border-b-2 border-blue-500 w-10" : ""
+          }`}>
+            <Link
+              href={path}
+              className="p-1 flex items-center justify-center hover:bg-gray-200 rounded"
+            >
+              <Icon icon={icon} className="text-3xl" />
+            </Link>
+          </div>
         ))}
       </div>
     </footer>
