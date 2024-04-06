@@ -60,6 +60,7 @@ blockdiag {
   group {
     label = "route /home"
     "(/home)page" -> Header;
+    "(/home)page" -> "useFetchUser(SWR)";
     "(/home)page" -> Post_AIPostList;
     "(/home)page" -> Sidebar [label = "pc"];
     "(/home)page" -> Footer [label = "sp"];
@@ -80,6 +81,7 @@ blockdiag {
 
   Sidebar [color = "lightgreen"];
   Header [color = "lightgreen"];
+  "useFetchUser(SWR)" [color = "lightblue"];
   Post_AIPostList [color = "lightgreen"];
   PostList [color = "lightgreen"];
   PostItem [color = "lightgreen"];

@@ -9,6 +9,8 @@ import Header from "@/components/Header/Header";
 import PostList from "@/components/PostList/PostList";
 
 const UserHome = () => {
+
+  // TODO 初回のみユーザー情報を取得し、id, nameをローカルに保存する
   // ユーザー情報を取得するカスタムフックを使う
   //const { data, error, isLoading } = useFetchUser();
 
