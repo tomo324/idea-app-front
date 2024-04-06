@@ -25,7 +25,7 @@ const PostList: React.FC = () => {
   }]
 
   if (post.length === 0) {
-    return <div>No post data</div>;
+    return <div className="sm:ml-20 mt-16">No post data</div>;
   }
   return (
     <>
