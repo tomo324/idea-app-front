@@ -15,7 +15,7 @@ export const StoryPostItem: StoryObj<typeof PostItem> = (args: any) => (
 StoryPostItem.args = {
   post: {
     id: 1,
-    content: "Hello, world!",
+    content: "テストコンテンツ。            ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。                                         ",
     createdAt: "2020-01-01",
     updatedAt: "2020-01-01",
     authorId: 1,
