@@ -30,7 +30,9 @@ const PostList: React.FC = () => {
   return (
     <>
       {post.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <div key={post.id} className="sm:ml-20 mt-16 mb-10">
+          <PostItem post={post} />
+        </div>
       ))}
     </>
   );
