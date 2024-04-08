@@ -1,6 +1,6 @@
 import React from "react";
-import Link from 'next/link';
-import Signin from '../../../components/Signin/Signin';
+import Link from "next/link";
+import Signin from "../../../components/Auth/Signin/Signin";
 
 const SigninPage = () => {
   return (
@@ -9,6 +9,6 @@ const SigninPage = () => {
       <Signin />
     </main>
   );
-}
+};
 
 export default SigninPage;

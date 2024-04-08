@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import Signin from "../Signin/Signin";
+import Signin from "../Auth/Signin/Signin";
 import { useRouter } from "next/navigation";
 
 // useRouterをモック化
@@ -135,7 +135,7 @@ describe("Signinコンポーネント", () => {
     expect(window.alert).toHaveBeenCalledWith("Server Error");
   });
 
-  it('Credentials incorrectエラーの場合、alertが実行され、パスワードのフォームがリセットされること', async () => {
+  it("Credentials incorrectエラーの場合、alertが実行され、パスワードのフォームがリセットされること", async () => {
     const mockResponse = {
       ok: false,
       status: 401,
@@ -163,14 +163,19 @@ describe("Signinコンポーネント", () => {
     // console.logが一度だけ呼び出されたことを確認
     expect(console.log).toHaveBeenCalledTimes(1);
     // console.logの引数が正しいことを確認
-    expect(console.log).toHaveBeenCalledWith('Invalid Email address or password. Please try again.', {
-      message: "Credentials incorrect",
-    });
+    expect(console.log).toHaveBeenCalledWith(
+      "Invalid Email address or password. Please try again.",
+      {
+        message: "Credentials incorrect",
+      }
+    );
 
     // alertが一度だけ呼び出されたことを確認
     expect(window.alert).toHaveBeenCalledTimes(1);
     // alertの引数が正しいことを確認
-    expect(window.alert).toHaveBeenCalledWith('Invalid Email address or password. Please try again.');
+    expect(window.alert).toHaveBeenCalledWith(
+      "Invalid Email address or password. Please try again."
+    );
     // TODO パスワードのフォームが空になっていることを確認
     expect(screen.getByLabelText("Password")).toHaveValue("");
   });
@@ -233,7 +238,6 @@ describe("Signinコンポーネント", () => {
     const signinButton = screen.getByRole("button", { name: "Login" });
     expect(signinButton).toBeDisabled();
   });
-
 
   it("メールアドレスが不正な形式の場合、エラーメッセージが表示され、Signinボタンを押せないこと", async () => {
     fireEvent.change(screen.getByLabelText("Email"), {

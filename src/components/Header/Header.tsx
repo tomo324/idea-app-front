@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import PostButton from '../PostButton/PostButton';
+import PostButton from '../Post/PostButton/PostButton';
 
 const Header: React.FC = () => {
   return (

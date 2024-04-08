@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Modal from "./Modal";
-import Signup from "../Signup/Signup";
+import Signup from "../Auth/Signup/Signup";
 
 const meta: Meta<typeof Modal> = {
   component: Modal,

@@ -1,5 +1,5 @@
-import Modal from '@/components/Modal/Modal';
-import Signin from '../../../../components/Signin/Signin';
+import Modal from "@/components/Modal/Modal";
+import Signin from "../../../../components/Auth/Signin/Signin";
 
 const SigninPage = () => {
   return (
@@ -9,6 +9,6 @@ const SigninPage = () => {
       </Modal>
     </div>
   );
-}
+};
 
 export default SigninPage;

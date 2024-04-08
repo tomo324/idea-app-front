@@ -6,7 +6,16 @@ import { BrowserView, MobileView } from "react-device-detect"
 import Sidebar from "@/components/Menu/Sidebar/Sidebar";
 import Footer from "@/components/Menu/Footer/Footer";
 import Header from "@/components/Header/Header";
-import PostList from "@/components/PostList/PostList";
+import PostList from "@/components/Post/PostList/PostList";
+
+// TODO delete機能をつける(モーダルを使う?)
+// TODO useFetchUserを使ってid, nameをlocalstrageに保存する
+// TODO useFetchUserが初回のみ呼ばれることを確認する
+// TODO useFetchPostを作成する
+// TODO idからユーザー名を取得するAPIを作成する
+// TODO useFetchUserNameByIdを作成する
+// TODO PostItem内で、authoridとlocalstrageのuseridが同じか確認し、そうなら削除ボタンを表示する。backendでの認証は実装済み
+
 
 const UserHome = () => {
 
