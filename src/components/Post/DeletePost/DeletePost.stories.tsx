@@ -13,5 +13,5 @@ export const StoryDeletePost: StoryObj<typeof DeletePost> = (
 ) => <DeletePost {...args} />;
 
 StoryDeletePost.args = {
-  path: "/posts/delete/1",
+  postId: 1,
 };

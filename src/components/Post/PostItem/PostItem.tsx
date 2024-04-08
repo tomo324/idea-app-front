@@ -35,7 +35,7 @@ const PostItem = ({ post }: { post: Post }) => {
         </p>
         <div className="flex mt-2 justify-between">
           <p className="text-gray-500">{post.createdAt}</p>
-          <DeletePost path={`/posts/${post.id}/delete`} />
+          <DeletePost postId={post.id} />
         </div>
       </div>
     </div>
