@@ -69,8 +69,8 @@ blockdiag {
     Post_AIPostList -> AIPostList
     PostList -> "useFetchPosts(SWR)";
     PostList -> PostItem;
-    PostItem -> DeletePostButton;
-    DeletePostButton -> "/posts/:id/delete" [label = "redirect"];
+    PostItem -> DeletePost;
+    DeletePost -> useDeletePost;
     PostItem -> useFetchUserNameById;
     PostItem -> usePostState;
     AIPostList -> "useFetchAIPosts(SWR)";
@@ -85,7 +85,8 @@ blockdiag {
   Post_AIPostList [color = "lightgreen"];
   PostList [color = "lightgreen"];
   PostItem [color = "lightgreen"];
-  DeletePostButton [color = "lightgreen"];
+  DeletePost [color = "lightgreen"];
+  useDeletePost [color = "lightblue"];
   AIPostList [color = "lightgreen"];
   AIPostItem [color = "lightgreen"];
   Footer [color = "lightgreen"];
@@ -123,10 +124,10 @@ blockdiag {
     "PostButton(posts)" -> "/posts/create(posts)" [label = "redirect"];
     "PostList(posts)" -> "useFetchPosts(SWR)(posts)";
     "PostList(posts)" -> "PostItem(posts)";
-    "PostItem(posts)" -> "DeletePostButton(posts)";
+    "PostItem(posts)" -> "DeletePost(posts)";
+    "DeletePost(posts)" -> "useDeletePost(posts)";
     "PostItem(posts)"-> "useFetchUserNameById(posts)"
     "PostItem(posts)" -> "usePostState(posts)";
-    "DeletePostButton(posts)" -> "/posts/delete/:id(posts)" [label = "redirect"];
   }
 
   "Header(posts)" [color = "lightgreen"];
@@ -134,25 +135,11 @@ blockdiag {
   "PostList(posts)" [color = "lightgreen"];
   "useFetchPosts(SWR)(posts)" [color = "lightblue"];
   "PostItem(posts)" [color = "lightgreen"];
-  "DeletePostButton(posts)" [color = "lightgreen"];
+  "DeletePost(posts)" [color = "lightgreen"];
+  "useDeletePost(posts)" [color = "lightblue"];
   "useFetchUserNameById(posts)" [color = "lightblue"];
   "usePostState(posts)" [color = "lightblue"];
   "Sidebar(posts)" [color = "lightgreen"];
   "Footer(posts)" [color = "lightgreen"];
-
-
-  // route /posts/:id/delete
-  group {
-    label = "route /posts/:id/delete"
-    "(/posts/:id/delete)page" -> "Modal(delete)";
-    "Modal(delete)" -> "useModal(delete)";
-    "Modal(delete)" -> DeletePost [label = "children"];
-    DeletePost -> useDeletePost;
-  }
-
-  "Modal(delete)" [color = "lightgreen"];
-  DeletePost [color = "lightgreen"];
-  "useModal(delete)" [color = "lightblue"];
-  useDeletePost [color = "lightblue"];
 }
 ....
