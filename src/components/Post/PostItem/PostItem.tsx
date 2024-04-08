@@ -25,7 +25,7 @@ const PostItem = ({ post }: { post: Post }) => {
         <p style={{overflowWrap: 'anywhere'}} className="block mt-1 text-lg leading-tight font-medium text-black whitespace-break-spaces">{post.content}</p>
         <div className="flex mt-2 justify-between">
           <p className="text-gray-500">{post.createdAt}</p>
-          <DeletePostButton path={`/posts/delete/${post.id}`} />
+          <DeletePostButton path={`/posts/${post.id}/delete`} />
         </div>
       </div>
     </div>

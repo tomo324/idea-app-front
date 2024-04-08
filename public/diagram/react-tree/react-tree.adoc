@@ -70,7 +70,7 @@ blockdiag {
     PostList -> "useFetchPosts(SWR)";
     PostList -> PostItem;
     PostItem -> DeletePostButton;
-    DeletePostButton -> "/posts/delete/:id" [label = "redirect"];
+    DeletePostButton -> "/posts/:id/delete" [label = "redirect"];
     PostItem -> useFetchUserNameById;
     PostItem -> usePostState;
     AIPostList -> "useFetchAIPosts(SWR)";
@@ -141,10 +141,10 @@ blockdiag {
   "Footer(posts)" [color = "lightgreen"];
 
 
-  // route /posts/delete/:id
+  // route /posts/:id/delete
   group {
-    label = "route /posts/delete/:id"
-    "(/posts/delete/:id)page" -> "Modal(delete)";
+    label = "route /posts/:id/delete"
+    "(/posts/:id/delete)page" -> "Modal(delete)";
     "Modal(delete)" -> "useModal(delete)";
     "Modal(delete)" -> DeletePost [label = "children"];
     DeletePost -> useDeletePost;
