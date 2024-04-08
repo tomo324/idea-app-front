@@ -1,4 +1,5 @@
 import React from "react";
+import DeletePostButton from "../DeletePostButton/DeletePostButton";
 
 interface Post {
   id: number;
@@ -22,7 +23,10 @@ const PostItem = ({ post }: { post: Post }) => {
       <div className="p-8 flex flex-col flex-wrap">
         <div style={{overflowWrap: 'anywhere'}} className="tracking-wide text-sm text-indigo-500 font-semibold whitespace-normal">{authorName}</div>
         <p style={{overflowWrap: 'anywhere'}} className="block mt-1 text-lg leading-tight font-medium text-black whitespace-break-spaces">{post.content}</p>
-        <p className="mt-2 text-gray-500">{post.createdAt}</p>
+        <div className="flex mt-2 justify-between">
+          <p className="text-gray-500">{post.createdAt}</p>
+          <DeletePostButton path={`/posts/delete/${post.id}`} />
+        </div>
       </div>
     </div>
   );
