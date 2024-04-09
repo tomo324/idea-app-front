@@ -1,3 +1,4 @@
+import { useFetchPost } from "@/hooks/useFetchPost";
 import PostItem from "../PostItem/PostItem";
 
 type Post = {
@@ -9,7 +10,9 @@ type Post = {
 }
 
 const PostList: React.FC = () => {
-  const post: Post[] = [{
+
+  { /* 
+  const mockPost: Post[] = [{
     id: 1,
     content: "テストコンテンツ。            ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。                                         ",
     createdAt: "2020-01-01",
@@ -23,9 +26,16 @@ const PostList: React.FC = () => {
     updatedAt: "2020-01-01",
     authorId: 2,
   }]
+*/ }
 
-  if (post.length === 0) {
-    return <div className="sm:ml-20 mt-16">No post data</div>;
+  const { data, error, isLoading } = useFetchPost();
+  const post: Post[] = data;
+
+  if (error) return <div className="sm:ml-24 mt-20">Error: {error.message}</div>;
+  if (isLoading) return <div className="sm:ml-24 mt-20">loading...</div>;
+
+  if (!post || post.length === 0) {
+    return <div className="sm:ml-24 mt-20">No post data</div>;
   }
   return (
     <>
