@@ -72,10 +72,8 @@ blockdiag {
     PostItem -> DeletePost;
     DeletePost -> useDeletePost;
     PostItem -> useFetchUserNameById;
-    PostItem -> usePostState;
     AIPostList -> "useFetchAIPosts(SWR)";
     AIPostList -> AIPostItem;
-    AIPostItem -> useAIPostState;
     PostButton -> "/posts/create" [label = "redirect"];
   }
 
@@ -92,9 +90,7 @@ blockdiag {
   Footer [color = "lightgreen"];
   "useFetchPosts(SWR)" [color = "lightblue"];
   "useFetchUserNameById" [color = "lightblue"];
-  usePostState [color = "lightblue"];
   "useFetchAIPosts(SWR)" [color = "lightblue"];
-  useAIPostState [color = "lightblue"];
   PostButton [color = "lightgreen"];
 
   // route /posts/create
@@ -127,7 +123,6 @@ blockdiag {
     "PostItem(posts)" -> "DeletePost(posts)";
     "DeletePost(posts)" -> "useDeletePost(posts)";
     "PostItem(posts)"-> "useFetchUserNameById(posts)"
-    "PostItem(posts)" -> "usePostState(posts)";
   }
 
   "Header(posts)" [color = "lightgreen"];
@@ -138,7 +133,6 @@ blockdiag {
   "DeletePost(posts)" [color = "lightgreen"];
   "useDeletePost(posts)" [color = "lightblue"];
   "useFetchUserNameById(posts)" [color = "lightblue"];
-  "usePostState(posts)" [color = "lightblue"];
   "Sidebar(posts)" [color = "lightgreen"];
   "Footer(posts)" [color = "lightgreen"];
 }
