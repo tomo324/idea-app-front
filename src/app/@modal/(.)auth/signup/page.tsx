@@ -1,5 +1,5 @@
 import Modal from "@/components/Modal/Modal";
-import Signup from "../../../../components/Signup/Signup";
+import Signup from "../../../../components/Auth/Signup/Signup";
 import React from "react";
 
 const SignupPage = () => {

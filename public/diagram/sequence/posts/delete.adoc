@@ -1,6 +1,6 @@
 [plantuml,alice-bob,svg,role=sequence]
 ....
-title /posts/delete/:id
+title /posts/:id/delete
 skinparam monochrome true
 skinparam ranksep 20
 skinparam dpi 150
@@ -11,8 +11,8 @@ entity "Next.js server" as next
 entity "Nestjs server" as nest
 entity "Database" as db
 
-client->next:  "/posts/delete/:id"
-next->nest: DELETE "/posts/delete/:id" \n with Cookie
+client->next:  click delete button
+next->nest: DELETE "/posts/:id" \n with Cookie
 nest->nest: get accessToken from Cookie \n and verify it
 nest->nest: check if this post is \n owned by user
 nest->db: delete post

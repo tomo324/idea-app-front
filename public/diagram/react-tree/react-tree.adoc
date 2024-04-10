@@ -60,6 +60,7 @@ blockdiag {
   group {
     label = "route /home"
     "(/home)page" -> Header;
+    "(/home)page" -> "useFetchUser(SWR)";
     "(/home)page" -> Post_AIPostList;
     "(/home)page" -> Sidebar [label = "pc"];
     "(/home)page" -> Footer [label = "sp"];
@@ -68,28 +69,28 @@ blockdiag {
     Post_AIPostList -> AIPostList
     PostList -> "useFetchPosts(SWR)";
     PostList -> PostItem;
-    PostItem -> DeletePostButton;
-    DeletePostButton -> "/posts/delete/:id" [label = "redirect"];
-    PostItem -> usePostState;
+    PostItem -> DeletePost;
+    DeletePost -> useDeletePost;
+    PostItem -> useFetchUserNameById;
     AIPostList -> "useFetchAIPosts(SWR)";
     AIPostList -> AIPostItem;
-    AIPostItem -> useAIPostState;
     PostButton -> "/posts/create" [label = "redirect"];
   }
 
   Sidebar [color = "lightgreen"];
   Header [color = "lightgreen"];
+  "useFetchUser(SWR)" [color = "lightblue"];
   Post_AIPostList [color = "lightgreen"];
   PostList [color = "lightgreen"];
   PostItem [color = "lightgreen"];
-  DeletePostButton [color = "lightgreen"];
+  DeletePost [color = "lightgreen"];
+  useDeletePost [color = "lightblue"];
   AIPostList [color = "lightgreen"];
   AIPostItem [color = "lightgreen"];
   Footer [color = "lightgreen"];
   "useFetchPosts(SWR)" [color = "lightblue"];
-  usePostState [color = "lightblue"];
+  "useFetchUserNameById" [color = "lightblue"];
   "useFetchAIPosts(SWR)" [color = "lightblue"];
-  useAIPostState [color = "lightblue"];
   PostButton [color = "lightgreen"];
 
   // route /posts/create
@@ -119,9 +120,9 @@ blockdiag {
     "PostButton(posts)" -> "/posts/create(posts)" [label = "redirect"];
     "PostList(posts)" -> "useFetchPosts(SWR)(posts)";
     "PostList(posts)" -> "PostItem(posts)";
-    "PostItem(posts)" -> "DeletePostButton(posts)";
-    "DeletePostButton(posts)" -> "/posts/delete/:id(posts)" [label = "redirect"];
-    "PostItem(posts)" -> "usePostState(posts)";
+    "PostItem(posts)" -> "DeletePost(posts)";
+    "DeletePost(posts)" -> "useDeletePost(posts)";
+    "PostItem(posts)"-> "useFetchUserNameById(posts)"
   }
 
   "Header(posts)" [color = "lightgreen"];
@@ -129,24 +130,10 @@ blockdiag {
   "PostList(posts)" [color = "lightgreen"];
   "useFetchPosts(SWR)(posts)" [color = "lightblue"];
   "PostItem(posts)" [color = "lightgreen"];
-  "DeletePostButton(posts)" [color = "lightgreen"];
-  "usePostState(posts)" [color = "lightblue"];
+  "DeletePost(posts)" [color = "lightgreen"];
+  "useDeletePost(posts)" [color = "lightblue"];
+  "useFetchUserNameById(posts)" [color = "lightblue"];
   "Sidebar(posts)" [color = "lightgreen"];
   "Footer(posts)" [color = "lightgreen"];
-
-
-  // route /posts/delete/:id
-  group {
-    label = "route /posts/delete/:id"
-    "(/posts/delete/:id)page" -> "Modal(delete)";
-    "Modal(delete)" -> "useModal(delete)";
-    "Modal(delete)" -> DeletePost [label = "children"];
-    DeletePost -> useDeletePost;
-  }
-
-  "Modal(delete)" [color = "lightgreen"];
-  DeletePost [color = "lightgreen"];
-  "useModal(delete)" [color = "lightblue"];
-  useDeletePost [color = "lightblue"];
 }
 ....

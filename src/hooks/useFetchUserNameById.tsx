@@ -2,8 +2,8 @@
 
 import useSWR from "swr";
 
-export const useFetchUser = () => {
-  const getUserUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/users/me`;
+export const useFetchUserNameById = (userId: number) => {
+  const getUserNameUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/users/${userId}`;
 
   const fetcher = async (url: string) => {
     const response = await fetch(url, {
@@ -18,9 +18,14 @@ export const useFetchUser = () => {
     }
     return response.json();
   };
-  const { data, error, isLoading, isValidating } = useSWR(getUserUrl, fetcher);
+  const { data, error, isLoading, isValidating } = useSWR(
+    getUserNameUrl,
+    fetcher
+  );
 
-  console.log(isValidating ? 'Fetching from server...' : 'Fetching from cache...');
+  console.log(
+    isValidating ? "Fetching from server..." : "Fetching from cache..."
+  );
 
   return { data, error, isLoading };
 };

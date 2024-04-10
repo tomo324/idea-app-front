@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  render,
-  fireEvent,
-  screen,
-} from "@testing-library/react";
-import Signup from "../Signup/Signup";
+import { render, fireEvent, screen } from "@testing-library/react";
+import Signup from "../Auth/Signup/Signup";
 import { useRouter } from "next/navigation";
 
-  // useRouterをモック化
-  jest.mock('next/navigation', () => ({
-    useRouter: jest.fn(),
-  }));
+// useRouterをモック化
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+}));
 
 describe("Signupコンポーネント", () => {
   const signupUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`;
@@ -87,7 +83,7 @@ describe("Signupコンポーネント", () => {
     expect(global.fetch).toHaveBeenCalledWith(signupUrl, {
       method: "POST",
       mode: "cors",
-      credentials: 'include',
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
