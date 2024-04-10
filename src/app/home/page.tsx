@@ -10,11 +10,11 @@ import PostList from "@/components/Post/PostList/PostList";
 
 // delete機能をつける(モーダルを使う?)
 // useFetchUserを使ってidをlocalstrageに保存する
-// TODO useFetchPostを作成する
-// TODO idからユーザー名を取得するAPIを作成する
-// TODO useFetchUserNameByIdを作成する
-// TODO PostItem内で、authoridとlocalstrageのuseridが同じか確認し、そうなら削除ボタンを表示する。backendでの認証は実装済み
-// TODO user情報とpost情報を正常に取得できている場合にコンテンツを表示するようにする
+// useFetchPostを作成する
+// idからユーザー名を取得するAPIを作成する
+// useFetchUserNamebyIdを作成する
+// PostItem内で、authoridとlocalstrageのuseridが同じか確認し、そうなら削除ボタンを表示する。backendでの認証は実装済み
+// post情報を正常に取得できている場合にコンテンツを表示するようにする
 // TODO useFetchUserだとマウント時に毎回ユーザーを取得する必要があるので、signup, signinのAPIがuserIdを返すようにする。今はとりあえずuseFetchUserを使う
 
 const UserHome = () => {
@@ -27,11 +27,6 @@ const UserHome = () => {
     }
   }, [data]);
 
-  // TODO エラー処理を追加する
-  //if (error) return <div>Error: {error.message}</div>;
-  //if (isLoading) return <div>loading...</div>;
-
-  // user情報とpost情報を取得できている場合に以下を表示するようにする
   return (
     <div>
       <Header />

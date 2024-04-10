@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DeletePost from "../DeletePost/DeletePost";
+import { useFetchUserNameById } from "@/hooks/useFetchUserNameById";
 
 interface Post {
   id: number;
@@ -11,8 +12,19 @@ interface Post {
 
 const PostItem = ({ post }: { post: Post }) => {
   // カスタムフックを使い、投稿者の名前を取得する
-  const authorName = "tomo";
+  const { data } = useFetchUserNameById(post.authorId);
+  const authorName = data?.name;
+  const [isOwnPost, setIsOwnPost] = useState(false);
+
   // 投稿が自分のものかどうかを判定する
+  useEffect(() => {
+    if (data) {
+      const userId = localStorage.getItem("userId");
+      if (userId && Number(userId) === post.authorId) {
+        setIsOwnPost(true);
+      }
+    }
+  }, [data, post.authorId]);
 
   if (!post) {
     return <div>No post data</div>;
@@ -35,7 +47,7 @@ const PostItem = ({ post }: { post: Post }) => {
         </p>
         <div className="flex mt-2 justify-between">
           <p className="text-gray-500">{post.createdAt}</p>
-          <DeletePost postId={post.id} />
+          {isOwnPost && <DeletePost postId={post.id} />}
         </div>
       </div>
     </div>
