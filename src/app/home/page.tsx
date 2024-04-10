@@ -8,13 +8,6 @@ import Footer from "@/components/Menu/Footer/Footer";
 import Header from "@/components/Header/Header";
 import PostList from "@/components/Post/PostList/PostList";
 
-// delete機能をつける(モーダルを使う?)
-// useFetchUserを使ってidをlocalstrageに保存する
-// useFetchPostを作成する
-// idからユーザー名を取得するAPIを作成する
-// useFetchUserNamebyIdを作成する
-// PostItem内で、authoridとlocalstrageのuseridが同じか確認し、そうなら削除ボタンを表示する。backendでの認証は実装済み
-// post情報を正常に取得できている場合にコンテンツを表示するようにする
 // TODO useFetchUserだとマウント時に毎回ユーザーを取得する必要があるので、signup, signinのAPIがuserIdを返すようにする。今はとりあえずuseFetchUserを使う
 
 const UserHome = () => {
