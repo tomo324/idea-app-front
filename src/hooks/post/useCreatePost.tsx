@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useDisclosure } from "@mantine/hooks";
 
 interface PostForm {
   content: string;
@@ -8,6 +9,7 @@ interface PostForm {
 
 export const useCreatePost = () => {
   const router = useRouter();
+  const [opened, { open, close }] = useDisclosure(true);
 
   const submitPost = async (data: PostForm) => {
     const postUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/posts/create`;
@@ -30,6 +32,7 @@ export const useCreatePost = () => {
 
       if (response.ok) {
         console.log("Success");
+        close();
       } else {
         // レスポンスが失敗した場合
         console.log("Server Error", data);

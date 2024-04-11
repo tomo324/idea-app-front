@@ -10,7 +10,7 @@ const CreatePost: React.FC = () => {
   const { submitPost } = useCreatePost();
 
   return (
-    <div className="p-4 bg-white rounded shadow-md w-80vw sm:w-6/12">
+    <div className="pt-12 p-4 bg-white rounded shadow-md w-80vw sm:w-[600px]">
       <form onSubmit={handleSubmit(submitPost)}>
         <textarea
           id="content"
@@ -19,7 +19,7 @@ const CreatePost: React.FC = () => {
           className="block resize-none h-40 w-full px-2 py-2 mt-2 mb-4 border rounded-md outline-none focus:ring-2 focus:ring-blue-400"
         ></textarea>
         {errors.content && (
-          <p className="text-red-600 text-sm">
+          <p className="text-red-600 text-sm ml-1">
             {errors.content.message as React.ReactNode}
           </p>
         )}
