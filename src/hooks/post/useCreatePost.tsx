@@ -32,7 +32,7 @@ export const useCreatePost = () => {
 
       if (response.ok) {
         console.log("Success");
-        close();
+        router.push("/home");
       } else {
         // レスポンスが失敗した場合
         console.log("Server Error", data);
