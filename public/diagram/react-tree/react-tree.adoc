@@ -99,14 +99,14 @@ blockdiag {
     "(/posts/create)page" -> "Modal(create)";
     "Modal(create)" -> "useModal(create)";
     "Modal(create)" -> CreatePost [label = "children"];
-    CreatePost -> useCreatePostForm;
+    CreatePost -> usePostForm;
     CreatePost -> useCreatePost;
   }
 
   "Modal(create)" [color = "lightgreen"];
   CreatePost [color = "lightgreen"];
   "useModal(create)" [color = "lightblue"];
-  useCreatePostForm [color = "lightblue"];
+  usePostForm [color = "lightblue"];
   useCreatePost [color = "lightblue"];
 
   // route /posts

@@ -1,4 +1,4 @@
-import { useFetchPost } from "@/hooks/useFetchPost";
+import { useFetchPost } from "@/hooks/post/useFetchPost";
 import PostItem from "../PostItem/PostItem";
 
 type Post = {
