@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DeletePost from "../DeletePost/DeletePost";
-import { useFetchUserNameById } from "@/hooks/useFetchUserNameById";
+import { useFetchUserNameById } from "@/hooks/user/useFetchUserNameById";
 
 interface Post {
   id: number;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { useDeletePost } from "@/hooks/useDeletePost";
+import { useDeletePost } from "@/hooks/post/useDeletePost";
 
 const DeletePost: React.FC<{ postId: number }> = ({ postId }) => {
   const [showModal, setShowModal] = useState(false);
