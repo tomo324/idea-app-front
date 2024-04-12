@@ -12,19 +12,18 @@ interface Post {
 
 const PostItem = ({ post }: { post: Post }) => {
   // カスタムフックを使い、投稿者の名前を取得する
-  const { data } = useFetchUserNameById(post.authorId);
-  const authorName = data?.name;
+  const { authorName } = useFetchUserNameById(post.authorId);
   const [isOwnPost, setIsOwnPost] = useState(false);
 
   // 投稿が自分のものかどうかを判定する
   useEffect(() => {
-    if (data) {
+    if (authorName) {
       const userId = localStorage.getItem("userId");
       if (userId && Number(userId) === post.authorId) {
         setIsOwnPost(true);
       }
     }
-  }, [data, post.authorId]);
+  }, [authorName, post.authorId]);
 
   if (!post) {
     return <div>No post data</div>;

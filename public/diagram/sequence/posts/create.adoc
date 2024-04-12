@@ -15,5 +15,5 @@ next->nest: POST "/posts/create" \n with content and Cookie
 nest->nest: get accessToken from Cookie \n and verify it
 nest->db: save post
 nest->next: return Response "201"
-next->client: return Response "201" \n and redirect to "/posts"
+next->client: return Response "201"
 ....
