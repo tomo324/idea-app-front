@@ -3,27 +3,9 @@ import PostItem from "../PostItem/PostItem";
 import { useEffect, useState } from "react";
 import { Post } from "@/interface/post-interface";
 
-// Create -> 返ってきたpostをsetPostListで更新する
+// TODO Create -> 返ってきたpostをsetPostListで更新する
 
 const PostList: React.FC = () => {
-
-  { /* 
-  const mockPost: Post[] = [{
-    id: 1,
-    content: "テストコンテンツ。            ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。                                         ",
-    createdAt: "2020-01-01",
-    updatedAt: "2020-01-01",
-    authorId: 1,
-  },
-  {
-    id: 2,
-    content: "テストコンテンツ。ここにはコンテンツが入ります。ここにはコンテンツが入ります。ここにはコンテンツが入ります。",
-    createdAt: "2020-01-01",
-    updatedAt: "2020-01-01",
-    authorId: 2,
-  }]
-*/ }
-
   const { data, error, isLoading } = useFetchPost();
   const [postList, setPostList] = useState<Post[]>([]);
 
@@ -31,9 +13,10 @@ const PostList: React.FC = () => {
     if (data) {
       setPostList(data);
     }
-  }, [data])
+  }, [data]);
 
-  if (error) return <div className="sm:ml-24 mt-20">Error: {error.message}</div>;
+  if (error)
+    return <div className="sm:ml-24 mt-20">Error: {error.message}</div>;
   if (isLoading) return <div className="sm:ml-24 mt-20">loading...</div>;
 
   if (!postList || postList.length === 0) {
@@ -48,6 +31,6 @@ const PostList: React.FC = () => {
       ))}
     </>
   );
-}
+};
 
 export default PostList;
