@@ -1,14 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+interface Post {
+  id: number;
+  content: string;
+  createdAt: string;
+  updatedAt: string;
+  authorId: number;
+}
 
 export const useDeletePost = ({
   postId,
   setShowModal,
+  setPostList,
 }: {
   postId: number;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setPostList: React.Dispatch<React.SetStateAction<Post[]>>;
 }) => {
+
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  // モーダルを閉じる処理と削除成功時に投稿リストから削除する処理を同期的に行う
+  useEffect(() => {
+    if(deleteSuccess) {
+      setShowModal(false);
+      setPostList((prevPostList) => prevPostList.filter(post => post.id !== postId));
+      setDeleteSuccess(false);
+    }
+  }, [deleteSuccess, postId, setPostList, setShowModal]);
+
+
   const handleDelete = async () => {
     const deleteUrl = `${
       process.env.NEXT_PUBLIC_SERVER_URL
@@ -23,8 +46,7 @@ export const useDeletePost = ({
 
       if (response.ok) {
         console.log("Success");
-        // モーダルを閉じる
-        setShowModal(false);
+        setDeleteSuccess(true);
       } else {
         // レスポンスが失敗した場合
         const data = await response.json();

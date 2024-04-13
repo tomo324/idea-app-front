@@ -1,5 +1,6 @@
 import { useFetchPost } from "@/hooks/post/useFetchPost";
 import PostItem from "../PostItem/PostItem";
+import { useEffect, useState } from "react";
 
 type Post = {
   id: number;
@@ -8,6 +9,11 @@ type Post = {
   updatedAt: string;
   authorId: number;
 }
+
+// Create -> 返ってきたpostをsetPostListで更新する
+// TODO postListではなくprevPostListを使う
+// モーダルを閉じた後、スクロールできるようにする
+// TODO Postのinterfaceを一つにまとめる
 
 const PostList: React.FC = () => {
 
@@ -29,19 +35,25 @@ const PostList: React.FC = () => {
 */ }
 
   const { data, error, isLoading } = useFetchPost();
-  const post: Post[] = data;
+  const [postList, setPostList] = useState<Post[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setPostList(data);
+    }
+  }, [data])
 
   if (error) return <div className="sm:ml-24 mt-20">Error: {error.message}</div>;
   if (isLoading) return <div className="sm:ml-24 mt-20">loading...</div>;
 
-  if (!post || post.length === 0) {
+  if (!postList || postList.length === 0) {
     return <div className="sm:ml-24 mt-20">No post data</div>;
   }
   return (
     <>
-      {post.map((post) => (
+      {postList.map((post) => (
         <div key={post.id} className="sm:ml-20 mt-16 mb-10">
-          <PostItem post={post} />
+          <PostItem post={post} setPostList={setPostList} />
         </div>
       ))}
     </>
