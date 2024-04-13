@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-interface Post {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  authorId: number;
-}
+import { Post } from "@/interface/post-interface";
 
 export const useDeletePost = ({
   postId,

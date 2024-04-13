@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import { useDeletePost } from "@/hooks/post/useDeletePost";
-
-interface Post {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  authorId: number;
-}
+import { Post } from "@/interface/post-interface";
 
 const DeletePost: React.FC<{
   postId: number;

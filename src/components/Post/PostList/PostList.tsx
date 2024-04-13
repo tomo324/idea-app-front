@@ -1,19 +1,9 @@
 import { useFetchPost } from "@/hooks/post/useFetchPost";
 import PostItem from "../PostItem/PostItem";
 import { useEffect, useState } from "react";
-
-type Post = {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  authorId: number;
-}
+import { Post } from "@/interface/post-interface";
 
 // Create -> 返ってきたpostをsetPostListで更新する
-// TODO postListではなくprevPostListを使う
-// モーダルを閉じた後、スクロールできるようにする
-// TODO Postのinterfaceを一つにまとめる
 
 const PostList: React.FC = () => {
 

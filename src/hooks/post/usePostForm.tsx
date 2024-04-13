@@ -3,10 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postValidationSchema } from "@/utils/validations/postValidationSchema";
+import { PostForm } from "@/interface/post-interface";
 
-interface PostForm {
-  content: string;
-}
 
 export const usePostForm = () => {
   const {

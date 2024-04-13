@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DeletePost from "../DeletePost/DeletePost";
 import { useFetchUserNameById } from "@/hooks/user/useFetchUserNameById";
-
-interface Post {
-  id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  authorId: number;
-}
+import { Post } from "@/interface/post-interface";
 
 const PostItem = ({
   post,
