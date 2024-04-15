@@ -3,8 +3,6 @@ import PostItem from "../PostItem/PostItem";
 import { useEffect, useState } from "react";
 import { Post } from "@/interface/post-interface";
 
-// TODO Create -> 返ってきたpostをsetPostListで更新する
-
 const PostList: React.FC = () => {
   const { data, error, isLoading } = useFetchPost();
   const [postList, setPostList] = useState<Post[]>([]);
