@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useFetchUser } from "../../hooks/useFetchUser";
+import { useFetchUser } from "../../hooks/user/useFetchUser";
 import { BrowserView, MobileView } from "react-device-detect";
 import Sidebar from "@/components/Menu/Sidebar/Sidebar";
 import Footer from "@/components/Menu/Footer/Footer";

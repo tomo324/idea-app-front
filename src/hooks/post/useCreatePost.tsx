@@ -2,10 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
-
-interface PostForm {
-  content: string;
-}
+import { PostForm } from "@/interface/post-interface";
 
 export const useCreatePost = () => {
   const router = useRouter();

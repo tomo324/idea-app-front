@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { useDeletePost } from "@/hooks/useDeletePost";
+import { useDeletePost } from "@/hooks/post/useDeletePost";
+import { Post } from "@/interface/post-interface";
 
-const DeletePost: React.FC<{ postId: number }> = ({ postId }) => {
+const DeletePost: React.FC<{
+  postId: number;
+  setPostList: React.Dispatch<React.SetStateAction<Post[]>>;
+}> = ({ postId, setPostList }) => {
   const [showModal, setShowModal] = useState(false);
 
+  // 削除後モーダルを閉じた際もスクロール無効が続いてしまうため、コメントアウト
+{/* 
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
@@ -12,8 +18,9 @@ const DeletePost: React.FC<{ postId: number }> = ({ postId }) => {
       document.body.style.overflow = "unset";
     }
   }, [showModal]);
+*/}
 
-  const { handleDelete } = useDeletePost({ postId, setShowModal });
+  const { handleDelete } = useDeletePost({ postId, setShowModal, setPostList });
 
   return (
     <>
@@ -38,7 +45,7 @@ const DeletePost: React.FC<{ postId: number }> = ({ postId }) => {
                 Cancel
               </button>
               <button
-                onClick={handleDelete}
+                onClick={() => handleDelete()}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
               >
                 Delete
