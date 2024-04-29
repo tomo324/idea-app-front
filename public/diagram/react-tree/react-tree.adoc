@@ -135,5 +135,64 @@ blockdiag {
   "useFetchUserNameById(posts)" [color = "lightblue"];
   "Sidebar(posts)" [color = "lightgreen"];
   "Footer(posts)" [color = "lightgreen"];
+
+  // router ai-posts
+  group {
+    label = "route /ai-posts"
+    "(/ai-posts)page" -> "Header(ai-posts)";
+    "(/ai-posts)page" -> "AIPostList(ai-posts)";
+    "(/ai-posts)page" -> "AIPostButton(ai-posts)";
+    "AIPostButton(ai-posts)" -> "useGenerateAIPost(ai-posts)";
+    "(/ai-posts)page" -> "Sidebar(ai-posts)" [label = "pc"];
+    "(/ai-posts)page" -> "Footer(ai-posts)" [label = "sp"];
+    "Header(ai-posts)" -> "PostButton(ai-posts)";
+    "PostButton(ai-posts)" -> "/posts/create(ai-posts)" [label = "redirect"];
+    "AIPostList(ai-posts)" -> "useFetchAIPosts(SWR)(ai-posts)";
+    "AIPostList(ai-posts)" -> "AIPostItem(ai-posts) \n (show original post)";
+  }
+
+  "Header(ai-posts)" [color = "lightgreen"];
+  "PostButton(ai-posts)" [color = "lightgreen"];
+  "AIPostList(ai-posts)" [color = "lightgreen"];
+  "AIPostButton(ai-posts)" [color = "lightgreen"];
+  "useGenerateAIPost(ai-posts)" [color = "lightblue"];
+  "useFetchAIPosts(SWR)(ai-posts)" [color = "lightblue"];
+  "AIPostItem(ai-posts) \n (show original post)" [color = "lightgreen"];
+  "Sidebar(ai-posts)" [color = "lightgreen"];
+  "Footer(ai-posts)" [color = "lightgreen"];
+
+  // route /users
+  group {
+    label = "route /users"
+    "(/users)page" -> "Header(users)";
+    "(/users)page" -> "UserInfo(users)";
+    "UserInfo(users)" -> "LogoutButton(users)";
+    "LogoutButton(users)" -> "useLogout(users)";
+    "useLogout(users)" -> "/(users)" [label = "redirect"];
+    "UserInfo(users)" -> "useFetchUser(SWR)(users)";
+    "UserInfo(users)" -> "MyPostList(users)";
+    "MyPostList(users)" -> "useFetchMyPosts(SWR)(users)";
+    "MyPostList(users)" -> "MyPostItem(users)";
+    "MyPostItem(users)" -> "DeletePost(users)";
+    "DeletePost(users)" -> "useDeletePost(users)";
+    "(/users)page" -> "Sidebar(users)" [label = "pc"];
+    "(/users)page" -> "Footer(users)" [label = "sp"];
+    "Header(users)" -> "PostButton(users)";
+    "PostButton(users)" -> "/posts/create(users)" [label = "redirect"];
+  }
+
+  "Header(users)" [color = "lightgreen"];
+  "UserInfo(users)" [color = "lightgreen"];
+  "LogoutButton(users)" [color = "lightgreen"];
+  "useLogout(users)" [color = "lightblue"];
+  "useFetchUser(SWR)(users)" [color = "lightblue"];
+  "MyPostList(users)" [color = "lightgreen"];
+  "useFetchMyPosts(SWR)(users)" [color = "lightblue"];
+  "MyPostItem(users)" [color = "lightgreen"];
+  "DeletePost(users)" [color = "lightgreen"];
+  "useDeletePost(users)" [color = "lightblue"];
+  "Sidebar(users)" [color = "lightgreen"];
+  "Footer(users)" [color = "lightgreen"];
+  "PostButton(users)" [color = "lightgreen"];
 }
 ....
