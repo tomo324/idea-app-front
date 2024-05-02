@@ -25,14 +25,19 @@ const AiPostList = ({
   if (!aiPostList || aiPostList.length === 0) {
     return <div className="sm:ml-24 mt-20">No post data</div>;
   }
+
+  if (typeof aiPostList[0] === 'undefined') {
+    return <div className="sm:ml-24 mt-20">AIPost is undefined</div>
+  }
+
   return (
-    <>
+    <div className="mt-16 sm:ml-4">
       {aiPostList.map((aiPost) => (
-        <div key={aiPost.id} className="sm:ml-20 mt-16 mb-10">
+        <div key={aiPost.id} className="sm:ml-20 mt-4 mb-4">
           <AiPostItem aiPost={aiPost} />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
