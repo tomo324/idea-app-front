@@ -62,7 +62,7 @@ const AccordionItem = ({ post, order }: { post: Post; order: string }) => {
         className="cursor-pointer mt-2 text-blue-500"
         onClick={onClickAccordionToggle}
       >
-        元になったpost {order}
+        original post: {order}
       </summary>
       <div className="bg-blue-50 rounded-md shadow-sm p-3" ref={childElement}>
         <p className="text-sm text-indigo-500 font-semibold">{authorName}</p>

@@ -18,8 +18,8 @@ const AiPostItem = ({ aiPost }: { aiPost: AiPost }) => {
         <div className="flex mt-2 justify-between">
           <p className="text-gray-500">{aiPost.createdAt}</p>
         </div>
-        <AccordionItem post={aiPost.aiPosts[0].post} order={"1"} />
-        <AccordionItem post={aiPost.aiPosts[1].post} order={"2"} />
+        <AccordionItem post={aiPost.post_to_aiposts[0].post} order={"1"} />
+        <AccordionItem post={aiPost.post_to_aiposts[1].post} order={"2"} />
       </div>
     </div>
   );
