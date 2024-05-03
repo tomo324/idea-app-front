@@ -10,7 +10,8 @@ const DeletePost: React.FC<{
   const [showModal, setShowModal] = useState(false);
 
   // 削除後モーダルを閉じた際もスクロール無効が続いてしまうため、コメントアウト
-{/* 
+  {
+    /* 
   useEffect(() => {
     if (showModal) {
       document.body.style.overflow = "hidden";
@@ -18,7 +19,8 @@ const DeletePost: React.FC<{
       document.body.style.overflow = "unset";
     }
   }, [showModal]);
-*/}
+*/
+  }
 
   const { handleDelete } = useDeletePost({ postId, setShowModal, setPostList });
 
@@ -31,8 +33,14 @@ const DeletePost: React.FC<{
       </button>
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white m-4 p-4 rounded shadow">
+        <div
+          onClick={() => setShowModal(false)}
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="bg-white m-4 p-4 rounded shadow"
+          >
             <h2 className="text-lg font-bold mb-4">投稿の削除</h2>
             <p className="mb-4">
               本当にこの投稿を削除しますか？ この操作は取り消せません。

@@ -39,7 +39,7 @@ const PostItem = ({
         </div>
         <p
           style={{ overflowWrap: "anywhere" }}
-          className="block mt-1 text-lg leading-tight font-medium text-black whitespace-break-spaces"
+          className="block mt-3 text-lg leading-tight font-medium text-black whitespace-break-spaces"
         >
           {post.content}
         </p>
