@@ -9,9 +9,15 @@ const AiPostItem = ({ aiPost }: { aiPost: AiPost }) => {
   return (
     <div className="max-w-md md:max-w-2xl bg-white rounded-xl shadow-md overflow-hidden m-3">
       <div className="p-8 flex flex-col flex-wrap">
+        <div
+          style={{ overflowWrap: "anywhere" }}
+          className="tracking-wide text-sm text-indigo-500 font-semibold whitespace-normal"
+        >
+          Created by AI
+        </div>
         <p
           style={{ overflowWrap: "anywhere" }}
-          className="block mt-1 text-lg leading-tight font-medium text-black whitespace-break-spaces"
+          className="block mt-3 text-lg leading-tight font-medium text-black whitespace-break-spaces"
         >
           {aiPost.content}
         </p>
