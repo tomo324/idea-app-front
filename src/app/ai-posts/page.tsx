@@ -9,7 +9,7 @@ import AiPostList from "@/components/AiPost/AiPostList/AiPostList";
 import { AiPost as AiPostType} from "@/interface/post-interface";
 
 const AiPost = () => {
-  const [aiPostList, setAiPostList] = useState<AiPostType[]>([]);
+  const [aiPostData, setAiPostData] = useState<AiPostType[]>([]);
 
   return (
     <div>
@@ -24,7 +24,7 @@ const AiPost = () => {
         <Footer />
       </MobileView>
 
-      <AiPostList aiPostList={aiPostList} setAiPostList={setAiPostList}/>
+      <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData}/>
 
     </div>
   );
