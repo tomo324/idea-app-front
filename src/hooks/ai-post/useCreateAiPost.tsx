@@ -7,7 +7,7 @@ export const useCreateAiPost = ({
   setAiPostData: React.Dispatch<React.SetStateAction<AiPost[]>>;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const handleCreateAiPost = async (newAiPost: {
+  const handleCreateAiPost = async (generatedData: {
     content: string;
     posts: Post[];
   }) => {
@@ -22,9 +22,9 @@ export const useCreateAiPost = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: newAiPost.content,
-          firstPostId: newAiPost.posts[0].id,
-          secondPostId: newAiPost.posts[1].id,
+          content: generatedData.content,
+          firstPostId: generatedData.posts[0].id,
+          secondPostId: generatedData.posts[1].id,
         }),
       });
 
@@ -32,12 +32,9 @@ export const useCreateAiPost = ({
 
       if (response.ok) {
         console.log("Create Success");
+        const newAiPost = { ...data, posts: generatedData.posts };
         // レスポンスデータにpost_to_aipostsがないためエラーになる
-        //setAiPostData((prevPostList) => [...prevPostList, data]);
-        // TODO AIPostのレスポンスデータのpost_to_aipostsテーブルデータは不要。mapで各オブジェクトからaipost, postのみを抽出してuseStateで管理すれば良い
-        // TODO よって、AiPostの型定義を修正する
-        // TODO setAiPostDataを更新できるように修正する
-        // TODO aiPostを新しい順に表示するようにする
+        setAiPostData((prevPostList) => [newAiPost, ...prevPostList]);
         setShowModal(false);
       } else {
         // レスポンスが失敗した場合
