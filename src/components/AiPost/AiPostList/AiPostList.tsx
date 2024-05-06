@@ -31,7 +31,7 @@ const AiPostList = ({
   }
 
   return (
-    <div className="mt-16 sm:ml-4">
+    <div className="my-16 sm:ml-4">
       {aiPostData.map((aiPost) => (
         <div key={aiPost.id} className="sm:ml-20 mt-4 mb-4">
           <AiPostItem aiPost={aiPost} />
