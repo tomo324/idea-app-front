@@ -13,7 +13,7 @@ const AiPost = () => {
   const [aiPostData, setAiPostData] = useState<AiPostType[]>([]);
 
   return (
-    <div>
+    <>
 
       <Header />
 
@@ -27,11 +27,18 @@ const AiPost = () => {
 
       <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData}/>
 
-      <div className="absolute right-10 bottom-10">
-        <AiPostButton setAiPostData={setAiPostData} />
-      </div>
+      <BrowserView>
+        <div className="fixed right-10 bottom-10">
+          <AiPostButton setAiPostData={setAiPostData} />
+        </div>
+      </BrowserView>
 
-    </div>
+      <MobileView>
+        <div className="fixed right-5 bottom-16">
+          <AiPostButton setAiPostData={setAiPostData} />
+        </div>
+      </MobileView>
+    </>
   );
 }
 
