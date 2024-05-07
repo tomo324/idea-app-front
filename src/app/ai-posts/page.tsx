@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
-import { BrowserView, MobileView } from "react-device-detect"
+import { BrowserView, MobileView } from "react-device-detect";
 import Sidebar from "@/components/Menu/Sidebar/Sidebar";
 import Footer from "@/components/Menu/Footer/Footer";
 import Header from "@/components/Header/Header";
 import AiPostList from "@/components/AiPost/AiPostList/AiPostList";
-import { AiPost as AiPostType} from "@/interface/post-interface";
+import { AiPost as AiPostType } from "@/interface/post-interface";
 import AiPostButton from "@/components/AiPost/AiPostButton/AiPostButton";
 
 const AiPost = () => {
@@ -14,7 +14,6 @@ const AiPost = () => {
 
   return (
     <>
-
       <Header />
 
       <BrowserView>
@@ -25,7 +24,7 @@ const AiPost = () => {
         <Footer />
       </MobileView>
 
-      <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData}/>
+      <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData} />
 
       <BrowserView>
         <div className="fixed right-10 bottom-10">
@@ -40,6 +39,6 @@ const AiPost = () => {
       </MobileView>
     </>
   );
-}
+};
 
 export default AiPost;

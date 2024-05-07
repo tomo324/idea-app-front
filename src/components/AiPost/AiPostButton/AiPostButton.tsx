@@ -3,12 +3,23 @@
 import { useGenerateAiPost } from "@/hooks/ai-post/useGenerateAiPost";
 import { AiPost } from "@/interface/post-interface";
 import { Icon } from "@iconify/react";
+import { Box } from "@mantine/core";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
 
-const AiPostButton = ({ setAiPostData }: { setAiPostData: React.Dispatch<React.SetStateAction<AiPost[]>> }) => {
+const AiPostButton = ({
+  setAiPostData,
+}: {
+  setAiPostData: React.Dispatch<React.SetStateAction<AiPost[]>>;
+}) => {
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { handleGenerateAiPost } = useGenerateAiPost({ setAiPostData, setShowModal })
+  const { handleGenerateAiPost } = useGenerateAiPost({
+    setAiPostData,
+    setShowModal,
+    setIsLoading,
+  });
 
   return (
     <>
@@ -31,25 +42,32 @@ const AiPostButton = ({ setAiPostData }: { setAiPostData: React.Dispatch<React.S
             <p className="mb-4">
               アイデアをランダムに取得し、AIが融合を行います。
             </p>
-            <div className="flex justify-end">
-              <button
-                onClick={() => setShowModal(false)}
-                className="mr-2 px-4 py-2 text-gray-500 hover:text-gray-700"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleGenerateAiPost()}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-              >
-                Generate
-              </button>
-            </div>
+
+            {isLoading ? (
+              <Box className="flex float-right mr-7">
+                <CircularProgress />
+              </Box>
+            ) : (
+              <div className="flex justify-end">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="mr-2 px-4 py-2 text-gray-500 hover:text-gray-700"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleGenerateAiPost()}
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+                >
+                  Generate
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
 export default AiPostButton;

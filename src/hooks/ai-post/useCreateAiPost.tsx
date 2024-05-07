@@ -3,9 +3,11 @@ import { AiPost, Post } from "@/interface/post-interface";
 export const useCreateAiPost = ({
   setAiPostData,
   setShowModal,
+  setIsLoading,
 }: {
   setAiPostData: React.Dispatch<React.SetStateAction<AiPost[]>>;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const handleCreateAiPost = async (generatedData: {
     content: string;
@@ -33,16 +35,21 @@ export const useCreateAiPost = ({
       if (response.ok) {
         console.log("Create Success");
         const newAiPost = { ...data, posts: generatedData.posts };
-        // レスポンスデータにpost_to_aipostsがないためエラーになる
+        // 新しいAiPostを追加
         setAiPostData((prevPostList) => [newAiPost, ...prevPostList]);
+        // ローディングを解除
+        setIsLoading(false);
+        // モーダルを閉じる
         setShowModal(false);
       } else {
         // レスポンスが失敗した場合
         console.log("Server Error", data);
+        setIsLoading(false);
         alert("Server Error");
       }
     } catch (error) {
       console.log("Fetch Error", error);
+      setIsLoading(false);
       alert("Fetch Error");
     }
   };
