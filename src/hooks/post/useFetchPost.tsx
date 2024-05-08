@@ -12,7 +12,10 @@ export const useFetchPost = () => {
       credentials: "include",
     });
 
-    if (!response.ok) {
+    if (response.status === 401) {
+      const error = new Error("Your token is expired. Please login again.");
+      throw error;
+    } else if (!response.ok) {
       const error = new Error("An error occurred while fetching the data.");
       throw error;
     }
@@ -20,7 +23,9 @@ export const useFetchPost = () => {
   };
   const { data, error, isLoading, isValidating } = useSWR(getPostUrl, fetcher);
 
-  console.log(isValidating ? 'Fetching from server...' : 'Fetching from cache...');
+  console.log(
+    isValidating ? "Fetching from server..." : "Fetching from cache..."
+  );
 
   return { data, error, isLoading };
 };
