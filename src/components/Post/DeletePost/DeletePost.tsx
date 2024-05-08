@@ -39,11 +39,11 @@ const DeletePost: React.FC<{
         >
           <div
             onClick={(event) => event.stopPropagation()}
-            className="bg-white m-4 p-4 rounded shadow"
+            className="bg-white m-4 p-6 rounded shadow"
           >
             <h2 className="text-lg font-bold mb-4">投稿の削除</h2>
             <p className="mb-4">
-              本当にこの投稿を削除しますか？ この操作は取り消せません。
+              この投稿を削除してもよろしいですか？
             </p>
             <div className="flex justify-end">
               <button
