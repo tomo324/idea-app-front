@@ -15,12 +15,5 @@ export interface AiPost {
   content: string;
   createdAt: string;
   updatedAt: string;
-  post_to_aiposts: PostToAiPost[];
-}
-
-export interface PostToAiPost {
-  id: number;
-  postId: number;
-  aipostId: number;
-  post: Post;
+  posts: Post[];
 }

@@ -21,7 +21,7 @@ const PostList: React.FC = () => {
     return <div className="sm:ml-24 mt-20">No post data</div>;
   }
   return (
-    <div className="mt-16 sm:ml-4">
+    <div className="my-16 sm:ml-4">
       {postList.map((post) => (
         <div key={post.id} className="sm:ml-20 mt-4 mb-4">
           <PostItem post={post} setPostList={setPostList} />

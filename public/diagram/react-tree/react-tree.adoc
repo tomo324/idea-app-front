@@ -143,6 +143,7 @@ blockdiag {
     "(/ai-posts)page" -> "AIPostList(ai-posts)";
     "(/ai-posts)page" -> "AIPostButton(ai-posts)";
     "AIPostButton(ai-posts)" -> "useGenerateAIPost(ai-posts)";
+    "AIPostButton(ai-posts)" -> "useCreateAIPost(ai-posts)";
     "(/ai-posts)page" -> "Sidebar(ai-posts)" [label = "pc"];
     "(/ai-posts)page" -> "Footer(ai-posts)" [label = "sp"];
     "Header(ai-posts)" -> "PostButton(ai-posts)";
@@ -156,6 +157,7 @@ blockdiag {
   "AIPostList(ai-posts)" [color = "lightgreen"];
   "AIPostButton(ai-posts)" [color = "lightgreen"];
   "useGenerateAIPost(ai-posts)" [color = "lightblue"];
+  "useCreateAIPost(ai-posts)" [color = "lightblue"];
   "useFetchAIPosts(SWR)(ai-posts)" [color = "lightblue"];
   "AIPostItem(ai-posts) \n (show original post)" [color = "lightgreen"];
   "Sidebar(ai-posts)" [color = "lightgreen"];
