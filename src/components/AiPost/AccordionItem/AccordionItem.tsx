@@ -7,6 +7,16 @@ const AccordionItem = ({ post, order }: { post: Post; order: string }) => {
 
   const { authorName } = useFetchUserNameById(post.authorId);
 
+  // ユーザーの場所を取得し、投稿日時をローカルタイムゾーンで表示する
+  const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+  const localDate = new Date(post.createdAt).toLocaleString(locale, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   const onClickAccordionToggle = (
     event: React.MouseEvent<HTMLInputElement>
   ) => {
@@ -67,7 +77,7 @@ const AccordionItem = ({ post, order }: { post: Post; order: string }) => {
       <div className="bg-blue-50 rounded-md shadow-sm p-3" ref={childElement}>
         <p className="text-sm text-indigo-500 font-semibold">{authorName}</p>
         <p className="mt-1">{post.content}</p>
-        <p className="text-gray-500 mt-1">{post.createdAt}</p>
+        <p className="text-gray-500 mt-1">{localDate}</p>
       </div>
     </details>
   );
