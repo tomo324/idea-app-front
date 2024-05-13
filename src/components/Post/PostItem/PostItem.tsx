@@ -24,9 +24,15 @@ const PostItem = ({
     }
   }, [authorName, post.authorId]);
 
-  if (!post) {
-    return null;
-  }
+  // ユーザーの場所を取得し、投稿日時をローカルタイムゾーンで表示する
+  const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+  const localDate = new Date(post.createdAt).toLocaleString(locale, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   return (
     <div className="max-w-md md:max-w-2xl bg-white rounded-xl shadow-md overflow-hidden m-3">
@@ -44,7 +50,7 @@ const PostItem = ({
           {post.content}
         </p>
         <div className="flex mt-2 justify-between">
-          <p className="text-gray-500">{post.createdAt}</p>
+          <p className="text-gray-500">{localDate}</p>
           {isOwnPost && (
             <DeletePost postId={post.id} setPostList={setPostList} />
           )}

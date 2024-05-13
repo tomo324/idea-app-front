@@ -3,7 +3,7 @@ import { AiPost } from "../../../interface/post-interface";
 import AiPostItem from "../AiPostItem/AiPostItem";
 import { useFetchAiPost } from "@/hooks/ai-post/useFetchAiPost";
 import { Box } from "@mantine/core";
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
 
 const AiPostList = ({
   aiPostData,
