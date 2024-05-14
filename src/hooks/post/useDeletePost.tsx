@@ -33,7 +33,7 @@ export const useDeletePost = ({
         // レスポンスが失敗した場合
         const data = await response.json();
         console.log("Server Error", data);
-        alert("Server Error");
+        alert(data.message);
       }
     } catch (error) {
       console.log("Fetch Error", error);
