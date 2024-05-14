@@ -48,7 +48,7 @@ export const useSignin = () => {
           reset({ password: "" });
         } else {
           console.log("Server Error", data);
-          alert("Server Error");
+          alert(data.message);
         }
       }
     } catch (error) {

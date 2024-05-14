@@ -44,7 +44,7 @@ export const useSignup = () => {
           alert("Email already exists");
         } else {
           console.log("Server Error", data);
-          alert("Server Error");
+          alert(data.message);
         }
       }
     } catch (error) {

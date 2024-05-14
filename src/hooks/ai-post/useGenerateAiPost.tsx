@@ -38,7 +38,7 @@ export const useGenerateAiPost = ({
         // レスポンスが失敗した場合
         console.log("Server Error", data);
         setIsLoading(false);
-        alert("Server Error");
+        alert(data.message);
       }
     } catch (error) {
       console.log("Fetch Error", error);
