@@ -167,12 +167,14 @@ blockdiag {
   group {
     label = "route /users"
     "(/users)page" -> "Header(users)";
-    "(/users)page" -> "UserInfo(users)";
-    "UserInfo(users)" -> "useFetchUser(SWR)(users)";
-    "UserInfo(users)" -> "LogoutButton(users)";
+    "(/users)page" -> "UserPage(users)";
+    "UserPage(users)" -> "useFetchUser(SWR)(users)";
+    "UserPage(users)" -> "LogoutButton(users)";
     "LogoutButton(users)" -> "useLogout(users)";
     "useLogout(users)" -> "/(users)" [label = "redirect"];
-    "UserInfo(users)" -> "MyPostList(users)";
+    "UserPage(users)" -> "EditUserButton(users)";
+    "EditUserButton(users)" -> "/users/edit(users)" [label = "redirect"];
+    "UserPage(users)" -> "MyPostList(users)";
     "MyPostList(users)" -> "useFetchMyPosts(SWR)(users)";
     "MyPostList(users)" -> "MyPostItem(users)";
     "MyPostItem(users)" -> "DeletePost(users)";
@@ -184,10 +186,11 @@ blockdiag {
   }
 
   "Header(users)" [color = "lightgreen"];
-  "UserInfo(users)" [color = "lightgreen"];
+  "UserPage(users)" [color = "lightgreen"];
   "LogoutButton(users)" [color = "lightgreen"];
   "useLogout(users)" [color = "lightblue"];
   "useFetchUser(SWR)(users)" [color = "lightblue"];
+  "EditUserButton(users)" [color = "lightgreen"];
   "MyPostList(users)" [color = "lightgreen"];
   "useFetchMyPosts(SWR)(users)" [color = "lightblue"];
   "MyPostItem(users)" [color = "lightgreen"];
@@ -196,5 +199,23 @@ blockdiag {
   "Sidebar(users)" [color = "lightgreen"];
   "Footer(users)" [color = "lightgreen"];
   "PostButton(users)" [color = "lightgreen"];
+
+  // route /users/edit
+  group {
+    label = "route /users/edit"
+    "(/users/edit)page" -> "Modal(edit)";
+    "Modal(edit)" -> "useModal(edit)";
+    "Modal(edit)" -> "EditUser(edit)" [label = "children"];
+    "EditUser(edit)" -> "useFetchUser(edit)";
+    "EditUser(edit)" -> "useEditUserForm(edit)";
+    "EditUser(edit)" -> "useEditUser(edit)";
+  }
+
+  "Modal(edit)" [color = "lightgreen"];
+  "EditUser(edit)" [color = "lightgreen"];
+  "useFetchUser(edit)" [color = "lightblue"];
+  "useModal(edit)" [color = "lightblue"];
+  "useEditUserForm(edit)" [color = "lightblue"];
+  "useEditUser(edit)" [color = "lightblue"];
 }
 ....

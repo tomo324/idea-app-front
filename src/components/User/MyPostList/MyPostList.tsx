@@ -29,7 +29,7 @@ const MyPostList = ({ userName }: { userName: string }) => {
   }
 
   return (
-    <div className="my-16 sm:ml-4">
+    <div className="my-8 sm:ml-4">
       {postList.map((post) => (
         <div key={post.id} className="sm:ml-20 mt-4 mb-4">
           <MyPostItem post={post} setPostList={setPostList} userName={userName} />
