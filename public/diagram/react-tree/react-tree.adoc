@@ -168,10 +168,10 @@ blockdiag {
     label = "route /users"
     "(/users)page" -> "Header(users)";
     "(/users)page" -> "UserInfo(users)";
+    "UserInfo(users)" -> "useFetchUser(SWR)(users)";
     "UserInfo(users)" -> "LogoutButton(users)";
     "LogoutButton(users)" -> "useLogout(users)";
     "useLogout(users)" -> "/(users)" [label = "redirect"];
-    "UserInfo(users)" -> "useFetchUser(SWR)(users)";
     "UserInfo(users)" -> "MyPostList(users)";
     "MyPostList(users)" -> "useFetchMyPosts(SWR)(users)";
     "MyPostList(users)" -> "MyPostItem(users)";
