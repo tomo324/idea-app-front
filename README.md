@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## バックエンドのレポジトリはこちら
+<p>https://github.com/tomo324/idea-app-backend</p>
 
-## Getting Started
+## このサービスについて
+<p>アイデアを投稿して共有するサービスです。AI融合機能によって、投稿された複数のアイデアを融合して新しいアイデアを生み出すことができます。</p>
 
-First, run the development server:
+## 作った理由
+<p>「多くの人に価値を届けるサービスを作りたい。しかし、どのようなサービスがより多くのニーズに答えられるのか分からない。」このような状況で試行錯誤した個人的な経験から、このサービスを開発しました。
+<br>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+世の中に浸透し私たちの生活の一部になっているサービスも、最初は些細な気づきから生まれました。「ここが不便だ」「こんなサービスがあったらいいのに」という些細な気づきは、多くの可能性をはらんでいます。
+<br>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+アイデアは人間の経験から生まれます。生成AIを利用しても、画期的なアイデアをゼロから生み出すことは難しいです。このサービスは、人々が経験に基づいた「気づき」を投稿し、AIによる融合を組み合わせることで、ニーズに沿った画期的なアイデアを生み出すことを目的としています。
+<br>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+人々の気づきによる多様なアイデアと、AIによる融合の組み合わせによって、このサービスが生み出せる価値は無限大に広がっていくと考えています。</p>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 技術構成
+フロントエンド: TypeScript(ver 5.3.3) / React(ver 18.2.0) / Next.js(App router) (ver 14.1.0)
 
-## Learn More
+バックエンド: TypeScript(ver 5.3.3) / Nestjs(ver 10.2.1)
 
-To learn more about Next.js, take a look at the following resources:
+ORM: Prisma(ver 5.7.1)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+DB: PostgreSQL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+開発ツール: Docker / Storybook
 
-## Deploy on Vercel
+テスト:
+<br>
+E2Eテスト: Jest / pactumjs
+<br>
+ユニットテスト: Jest / React Testing Library
+<br>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+デプロイ: Vercel(フロント) / Heroku(バックエンド)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+外部サービス: DeepL API / ChatGPT API
+
+## 工夫したポイント
+
+### サービスの機能がユーザー数に依存し過ぎないようにした
+SNSのようなサービスを個人開発する際、ネックとなるのがユーザー数の確保です。多くのユーザーがいないと機能を十分に利用できないサービスの場合、ユーザー数が少ないリリースの初期段階では使える機能が制限され、「つまらない」と感じてしまいます。
+<br>
+このサービスではAI融合機能にランダム性を持たせ、ユーザー数や投稿数が少なくても様々な融合パターンを楽しめるようにしました。もちろん、ユーザー数が多ければ多いほど多様なアイデアを扱うことができるようになり、サービスはより面白くなります！
+
+### UI, UXへのこだわり
+快適に操作できるかがユーザーの定着率を左右すると考え、UI, UXには特にこだわりました。一部、人気サービスのUIを参考にすることにより、より多くの人が直感的に操作できるようにしました。
+<br>
+Next.jsのIntercepting Routesを取り入れることにより高い操作感でモーダル等を扱えるようにしました。
+
+### テストを開発に積極的に取り入れた
+機能の拡張やリファクタリングの際にコードの品質を維持しやすくするため、開発の中でE2Eテストやユニットテストを積極的に取り入れました。また、テスト駆動開発のサイクルを回しながら開発を行うことで、仕様を明確にした上で実装できるようになりました。

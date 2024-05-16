@@ -5,6 +5,7 @@ import { BrowserView, MobileView } from "react-device-detect"
 import Sidebar from "@/components/Menu/Sidebar/Sidebar";
 import Footer from "@/components/Menu/Footer/Footer";
 import Header from "@/components/Header/Header";
+import UserPage from "@/components/User/UserPage/UserPage";
 
 const User = () => {
   return (
@@ -20,9 +21,7 @@ const User = () => {
         <Footer />
       </MobileView>
 
-      <div>
-        <h1>User</h1>
-      </div>
+      <UserPage />
 
     </div>
   );

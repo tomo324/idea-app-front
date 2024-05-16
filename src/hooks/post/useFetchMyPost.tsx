@@ -2,8 +2,8 @@
 
 import useSWR from "swr";
 
-export const useFetchUser = () => {
-  const getUserUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/users/me`;
+export const useFetchMyPost = () => {
+  const getPostUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/posts/my-posts`;
 
   const fetcher = async (url: string) => {
     const response = await fetch(url, {
@@ -21,7 +21,7 @@ export const useFetchUser = () => {
     }
     return response.json();
   };
-  const { data, error, isLoading, isValidating } = useSWR(getUserUrl, fetcher);
+  const { data, error, isLoading, isValidating } = useSWR(getPostUrl, fetcher);
 
   console.log(
     isValidating ? "Fetching from server..." : "Fetching from cache..."

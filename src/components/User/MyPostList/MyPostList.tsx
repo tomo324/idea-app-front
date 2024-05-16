@@ -1,12 +1,12 @@
-import { useFetchPost } from "@/hooks/post/useFetchPost";
-import PostItem from "../PostItem/PostItem";
+import { useFetchMyPost } from "@/hooks/post/useFetchMyPost";
+import MyPostItem from "../MyPostItem/MyPostItem";
 import { useEffect, useState } from "react";
 import { Post } from "@/interface/post-interface";
 import { Box } from "@mantine/core";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const PostList: React.FC = () => {
-  const { data, error, isLoading } = useFetchPost();
+const MyPostList = ({ userName }: { userName: string }) => {
+  const { data, error, isLoading } = useFetchMyPost();
   const [postList, setPostList] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -29,15 +29,14 @@ const PostList: React.FC = () => {
   }
 
   return (
-    <div className="my-16 sm:ml-4">
-      <div className="ml-40 sm:ml-[390px] mt-4 text-gray-500">Posts</div>
+    <div className="my-8 sm:ml-4">
       {postList.map((post) => (
         <div key={post.id} className="sm:ml-20 mt-4 mb-4">
-          <PostItem post={post} setPostList={setPostList} />
+          <MyPostItem post={post} setPostList={setPostList} userName={userName} />
         </div>
       ))}
     </div>
   );
 };
 
-export default PostList;
+export default MyPostList;
