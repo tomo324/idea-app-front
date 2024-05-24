@@ -115,11 +115,11 @@ sequenceDiagram
     participant db as Database
     client->>next: "/auth/signup" with email, name, pass
     next->>nest: POST "/auth/signup" with email, name, pass
-    nest->>db: Save user
-    nest->>nest: Generate accessToken
-    nest->>next: Return accessToken in Http header "Set-Cookie" with httpOnly, secure, samesite=None
-    next->>next: Set accessToken to Cookie
-    next->>client: Return Response "201" redirect to "/home"
+    nest->>db: save user
+    nest->>nest: generate accessToken
+    nest->>next: return accessToken in Http header "Set-Cookie" with httpOnly, secure, samesite=None
+    next->>next: store accessToken in Cookie
+    next->>client: return Response "201", redirect to "/home"
 ```
 
 ```mermaid
@@ -135,13 +135,13 @@ sequenceDiagram
     participant db as Database
     client->>next: "/auth/signin" with email, pass
     next->>nest: POST "/auth/signin" with email, pass
-    nest->>db: Find user by email
-    db->>nest: Return user
+    nest->>db: find user by email
+    db->>nest: return user
     nest->>nest: verify password
-    nest->>nest: Generate accessToken
-    nest->>next: Return accessToken in Http header "Set-Cookie" with httpOnly, secure, samesite=None
-    next->>next: Set accessToken to Cookie
-    next->>client: Return Response "200" redirect to "/home"
+    nest->>nest: generate accessToken
+    nest->>next: return accessToken in Http header "Set-Cookie" with httpOnly, secure, samesite=None
+    next->>next: store accessToken in Cookie
+    next->>client: return Response "200", redirect to "/home"
 ```
 
 ### home
@@ -159,7 +159,7 @@ sequenceDiagram
     participant db as Database
     client->>next: "/home"
     next->>nest: GET "/posts" with Cookie
-    nest->>nest: Get accessToken from Cookie and verify it
+    nest->>nest: get accessToken from Cookie and verify it
     nest->>db: fetch posts
     db->>nest: return posts
     nest->>next: return posts
@@ -210,7 +210,7 @@ sequenceDiagram
     nest->>nest: check if this post is owned by user
     nest->>db: delete post
     nest->>next: return Response "200"
-    next->>client: return Response "200" and redirect to "/posts"
+    next->>client: return Response "200", redirect to "/posts"
 ```
 
 ```mermaid
@@ -269,9 +269,9 @@ sequenceDiagram
     client->>next: "/posts/my-posts"
     next->>nest: GET "/posts/my-posts" with Cookie
     nest->>nest: Get accessToken from Cookie and verify it
-    nest->>db: Find posts by userId
-    db->>nest: Return posts
-    nest->>next: Return posts
+    nest->>db: find posts by userId
+    db->>nest: return posts
+    nest->>next: return posts
     next->>client: display posts
 
 ```
@@ -302,9 +302,9 @@ sequenceDiagram
     next->>client: return AIContent
     next->>nest: POST "/ai-posts/create" with Cookie
     nest->>nest: get accessToken from Cookie and verify it
-    nest->>db: create new AIPost with AIContent
+    nest->>db: save AIPost
     nest->>next: return Response "201"
-    next->>client: return Response "201" and redirect to "/ai-posts"
+    next->>client: return Response "201", redirect to "/ai-posts"
 ```
 
 ```mermaid
@@ -344,9 +344,9 @@ sequenceDiagram
     client->>next: "/users"
     next->>nest: GET "/users/me" with Cookie
     nest->>nest: Get accessToken from Cookie and verify it
-    nest->>db: Find user by accessToken
-    db->>nest: Return user
-    nest->>next: Return user
+    nest->>db: find user by accessToken
+    db->>nest: return user
+    nest->>next: return user
     next->>client: display user
 
 ```
@@ -364,9 +364,9 @@ sequenceDiagram
     participant db as Database
     client->>next: "/users/delete"
     next->>nest: DELETE "/users" with Cookie
-    nest->>nest: Get accessToken from Cookie and verify it
+    nest->>nest: get accessToken from Cookie and verify it
     nest->>db: delete user by id from accessToken
     nest->>nest: delete accessToken from Cookie
     nest->>next: return Response "200"
-    next->>client: return Response "200" and redirect to "/"
+    next->>client: return Response "200", redirect to "/"
 ```
