@@ -38,10 +38,13 @@ export default function Home() {
         </div>
       </div>
       <div className="m-7">
-        <p className="text-center">
-          あなたのアイデアは、新しいアイデアへの道しるべとなります。
+        <p className="text-sm sm:text-base text-center sm:leading-loose">
+          AIdea
+          Parkは、日常の中で生まれるアイデアを共有するためのプラットフォームです。
           <br />
-          ユーザーによって共有されたアイデアはAIによって融合され、新しいアイデアを発見できます。
+          ユーザーによって共有されたアイデアはAIによって融合され、新たなアイデアを生み出します。
+          <br />
+          あなたのアイデアをAIdea Parkに投稿して、新たな可能性を見つけましょう。
         </p>
       </div>
       <div className="mt-28 flex justify-center">
@@ -51,7 +54,7 @@ export default function Home() {
           <br />
         </p>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-20">
         <Image
           src="/idea-example.png"
           alt="home-example"
