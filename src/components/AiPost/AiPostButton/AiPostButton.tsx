@@ -25,7 +25,7 @@ const AiPostButton = ({
     <>
       <button onClick={() => setShowModal(true)}>
         <div className="bg-blue-400 text-white hover:bg-blue-300 rounded-full border inline-block p-3">
-          <Icon icon="carbon:ai-launch" className="text-2xl" />
+          <Icon icon="carbon:ai-launch" className="text-2xl sm:text-4xl" />
         </div>
       </button>
 

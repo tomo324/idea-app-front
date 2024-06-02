@@ -26,17 +26,9 @@ const AiPost = () => {
 
       <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData} />
 
-      <BrowserView>
-        <div className="fixed right-10 bottom-10">
-          <AiPostButton setAiPostData={setAiPostData} />
-        </div>
-      </BrowserView>
-
-      <MobileView>
-        <div className="fixed right-5 bottom-16">
-          <AiPostButton setAiPostData={setAiPostData} />
-        </div>
-      </MobileView>
+      <div className="fixed right-10 bottom-10 sm:right-[600px] sm:bottom-10">
+        <AiPostButton setAiPostData={setAiPostData} />
+      </div>
     </>
   );
 };
