@@ -17,7 +17,7 @@ export default function Home() {
       <div className="flex h-full">
         <div className="bg-[#7bc6ef] flex-1 flex items-center justify-center flex-col">
           <div className="flex-1 flex items-center justify-center pt-20">
-            <h1 className="text-white md:text-7xl text-3xl text-center font-ibm">
+            <h1 className="text-white md:text-7xl text-3xl text-center">
               AIdea Park
             </h1>
           </div>
