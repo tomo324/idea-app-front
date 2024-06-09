@@ -47,7 +47,7 @@ export default function Home() {
           あなたのアイデアをAIdea Parkに投稿して、新たな可能性を見つけましょう。
         </p>
       </div>
-      <div className="mx-auto mb-20 max-w-prose">
+      <div className="mx-7 sm:mx-auto mb-20 max-w-prose">
         <h2 className="text-center text-2xl font-bold mt-20 mb-4">使い方</h2>
         <p className="text-sm sm:text-base text-left mt-16 mb-2">
           1. 新規登録orログインします。
