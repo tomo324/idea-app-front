@@ -26,7 +26,7 @@ const AiPost = () => {
 
       <AiPostList aiPostData={aiPostData} setAiPostData={setAiPostData} />
 
-      <div className="fixed right-10 bottom-10 sm:right-[600px] sm:bottom-10">
+      <div className="fixed right-10 bottom-20 sm:right-[600px] sm:bottom-10">
         <AiPostButton setAiPostData={setAiPostData} />
       </div>
     </>
