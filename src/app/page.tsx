@@ -47,6 +47,46 @@ export default function Home() {
           あなたのアイデアをAIdea Parkに投稿して、新たな可能性を見つけましょう。
         </p>
       </div>
+      <div className="mx-auto mb-20 max-w-prose">
+        <h2 className="text-center text-2xl font-bold mt-20 mb-4">使い方</h2>
+        <p className="text-sm sm:text-base text-left mt-16 mb-2">
+          1. 新規登録orログインします。
+        </p>
+        <Image
+          src="/how-to-use/login-signup.png"
+          alt="login-signup"
+          width={200}
+          height={200}
+        />
+        <p className="text-sm sm:text-base text-left mt-16 mb-2">
+          2. ヘッダーから「投稿する」をクリックし、アイデアを投稿します。
+        </p>
+        <Image
+          src="/how-to-use/postButton.png"
+          alt="postButton"
+          width={200}
+          height={200}
+        />
+        <p className="text-sm sm:text-base text-left mt-16 mb-2">
+          3.「AI」メニューをクリックすると、AIによって融合されたアイデアを閲覧できます。
+        </p>
+        <Image
+          src="/how-to-use/AIMenu.png"
+          alt="AIMenu"
+          width={150}
+          height={150}
+        />
+        <p className="text-sm sm:text-base text-left mt-16 mb-2">
+          4.
+          AIページの右下のボタンをクリックすると、AIを使ってアイデアを融合できます。
+        </p>
+        <Image
+          src="/how-to-use/AIButton.png"
+          alt="AIButton"
+          width={100}
+          height={100}
+        />
+      </div>
       <div className="mt-28 flex justify-center">
         {/* アイデア融合の例をここに記述 */}
         <p className="text-left">
