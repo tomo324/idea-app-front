@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DeletePost from "../DeletePost/DeletePost";
 import { useFetchUserNameById } from "@/hooks/user/useFetchUserNameById";
 import { Post } from "@/interface/post-interface";
+import RelatedAiPostButton from "@/components/AiPost/RelatedAiPostButton/RelatedAiPostButton";
 
 const PostItem = ({
   post,
@@ -51,6 +52,9 @@ const PostItem = ({
         </p>
         <div className="flex mt-2 justify-between">
           <p className="text-gray-500">{localDate}</p>
+          <div className="ml-[300px]">
+            <RelatedAiPostButton id={post.id} />
+          </div>
           {isOwnPost && (
             <DeletePost postId={post.id} setPostList={setPostList} />
           )}
