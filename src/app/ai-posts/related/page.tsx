@@ -7,6 +7,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSearchParams } from "next/navigation";
 import { useFetchRelatedAiPost } from "@/hooks/ai-post/useFetchRelatedAiPost";
 import AiPostItem from "@/components/AiPost/AiPostItem/AiPostItem";
+import RelatedAiPostCreateButton from "@/components/AiPost/RelatedAiPostButton/RelatedAiPostCreateButton/RelatedAiPostCreateButton";
+
+// TODO: 他のコンポーネントに分割する
 
 const AiPostRelatedPage = () => {
   const [aiPostData, setAiPostData] = useState<AiPostType[]>([]);
@@ -39,14 +42,22 @@ const AiPostRelatedPage = () => {
   }
 
   return (
-    <div className="my-16 sm:ml-4">
-      <div className="ml-36 sm:ml-[390px] mt-4 text-gray-500">AI Posts</div>
-      {aiPostData.map((aiPost) => (
-        <div key={aiPost.id} className="sm:ml-20 mt-4 mb-4">
-          <AiPostItem aiPost={aiPost} />
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="my-16 sm:ml-4">
+        <div className="ml-36 sm:ml-[390px] mt-4 text-gray-500">AI Posts</div>
+        {aiPostData.map((aiPost) => (
+          <div key={aiPost.id} className="sm:ml-20 mt-4 mb-4">
+            <AiPostItem aiPost={aiPost} />
+          </div>
+        ))}
+      </div>
+      <div className="fixed right-10 bottom-20 sm:left-[800px] sm:bottom-10">
+        <RelatedAiPostCreateButton
+          setAiPostData={setAiPostData}
+          id={Number(id)}
+        />
+      </div>
+    </>
   );
 };
 
