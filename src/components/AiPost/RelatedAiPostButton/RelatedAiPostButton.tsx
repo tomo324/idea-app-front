@@ -10,7 +10,7 @@ const RelatedAiPostButton = ({ id }: { id: number }) => {
 
   return (
     <div
-      className="bg-blue-400 text-white hover:bg-blue-300 rounded-full border inline-block p-1"
+      className="bg-blue-400 text-white hover:bg-blue-300 rounded-full border inline-block p-1 cursor-pointer"
       onClick={navigateToPost}
     >
       <Icon

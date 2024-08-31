@@ -50,14 +50,14 @@ const PostItem = ({
         >
           {post.content}
         </p>
-        <div className="flex mt-2 justify-between">
+        <div className="flex mt-2 items-center">
           <p className="text-gray-500">{localDate}</p>
-          <div className="ml-[300px]">
+          <div className="ml-auto flex space-x-4">
             <RelatedAiPostButton id={post.id} />
+            {isOwnPost && (
+              <DeletePost postId={post.id} setPostList={setPostList} />
+            )}
           </div>
-          {isOwnPost && (
-            <DeletePost postId={post.id} setPostList={setPostList} />
-          )}
         </div>
       </div>
     </div>
