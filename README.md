@@ -1,4 +1,4 @@
-## バックエンドのレポジトリはこちら
+## バックエンドのリポジトリはこちら
 <p>https://github.com/tomo324/idea-app-backend</p>
 
 ## このサービスについて
