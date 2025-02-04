@@ -8,10 +8,15 @@ import { useFetchRelatedAiPost } from "@/hooks/ai-post/useFetchRelatedAiPost";
 
 interface RelatedAiPostListProps {
   postId: number;
+  aiPostData: AiPostType[];
+  setAiPostData: React.Dispatch<React.SetStateAction<AiPostType[]>>;
 }
 
-const RelatedAiPostList = ({ postId }: RelatedAiPostListProps) => {
-  const [aiPostData, setAiPostData] = useState<AiPostType[]>([]);
+const RelatedAiPostList = ({
+  postId,
+  aiPostData,
+  setAiPostData,
+}: RelatedAiPostListProps) => {
   const { data, error, isLoading } = useFetchRelatedAiPost(postId);
 
   useEffect(() => {
@@ -40,15 +45,11 @@ const RelatedAiPostList = ({ postId }: RelatedAiPostListProps) => {
   return (
     <>
       <div className="my-16 sm:ml-4">
-        <div className="ml-36 sm:ml-[390px] mt-4 text-gray-500">AI Posts</div>
         {aiPostData.map((aiPost) => (
           <div key={aiPost.id} className="sm:ml-20 mt-4 mb-4">
             <AiPostItem aiPost={aiPost} />
           </div>
         ))}
-      </div>
-      <div className="fixed right-10 bottom-20 sm:left-[800px] sm:bottom-10">
-        <RelatedAiPostCreateButton setAiPostData={setAiPostData} id={postId} />
       </div>
     </>
   );
